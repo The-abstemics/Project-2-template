@@ -6,9 +6,7 @@ const Api = require("../apis/api")
 
 /* GET home page. */
 router.get('/', (req, res)=> {
-  User.find().then((users)=>
-  res.render('index', { title: 'Express', users})
-  )
+  res.render("index")
 });
 
 /* GET from API */
