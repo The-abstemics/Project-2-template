@@ -37,17 +37,17 @@ module.exports = (app) => {
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
 
   app.use(
-		session({
-			secret: 'Globtrotters-secret',
-			resave: false,
-			saveUninitialized: true,
-			cookie: {
-				maxAge: 24 * 60 * 60 * 1000
-			},
-			store: MongoStore.create({
-				mongoUrl: `${process.env.MONGODB_URI}/${process.env.DB_NAME}`
-			})
-		})
-	);
-
+    session({
+      cookie: {
+        maxAge: 24 * 60 * 60 * 1000
+      },
+      secret: process.env.SESSION_SECRET || "super hyper secret key",
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+      }),
+    })
+  );
 };
+
