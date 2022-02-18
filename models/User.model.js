@@ -4,18 +4,40 @@ const { Schema, model } = require('mongoose');
 const userSchema = new Schema({
 	username: {
 		type: String,
-		required: true,
+		required: true, 
 		unique: true
-	},
+		},
 	password: {
 		type: String,
 		required: true
-	},
-	email: {
+		},
+	age: {
+		type: Number,
+		required: true
+		},
+	sex: {
 		type: String,
 		required: true
-	},
-	// favorites: [{ type: Schema.Types.ObjectId, ref: 'Room', default: [] }]
+	        },
+	height:  {
+		type: Number,
+		required: true
+		},
+	weight:  {
+		type: Number,
+		required: true
+		},
+	image: {
+		type: [String], 
+		default: "url: defaultimage.url"
+		},
+	alcohol_lvl: {
+		       type: Number,
+		       },
+	consumptions: { 
+			type: Schema.Types.ObjectId, 
+			ref: "Drink"
+			}
 });
 
 const User = model('User', userSchema);
