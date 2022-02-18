@@ -3,10 +3,11 @@ var router = express.Router();
 
 const User = require("../models/User.model")
 
-//SIGNUP
-router.route('/signup')
+
+router.route("/signup")
+
 .get((req,res)=>{
-    res.render('auth/signup')
+    res.render("auth/signup")
 })
 
 //LOGIN
