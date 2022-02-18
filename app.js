@@ -9,6 +9,7 @@ var app = express();
 require('./config/db')
 require('./config/global')(app)
 
+
 // 👇 Start handling routes here
 
 const index = require("./routes/index");
@@ -24,6 +25,7 @@ app.use("/profile", profileRoutes);
 const drinksRoutes = require("./routes/drinks");
 app.use("/drinks", drinksRoutes);
 */
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

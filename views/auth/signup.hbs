@@ -1,4 +1,11 @@
 <h2>Sign up</h2>
+<div>
+    <form action="/auth/signup" method="POST">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username">
+        </div>
+
 
 <form action="/auth/signup" method="POST">
 
@@ -21,7 +28,22 @@
     <input type="text" name="height">
 </label>
 
-<button type="submit" >Create</button>
+        <div>
+            <label for="sex">Sex</label>
+            <input type="text" name="sex">
+        </div>
 
+        <div>
+            <label for="weight">Weight</label>
+            <input type="text" name="weight">
 
-</form>
+        </div>
+
+        <div>
+            <label for="height">Height</label>
+            <input type="text" name="height">
+        </div>
+
+        <button type="submit" >Create</button>
+    </form>
+</div>
