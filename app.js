@@ -32,4 +32,18 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// 👇 Start handling routes here
+
+const index = require("./routes/index");
+app.use("/", index);
+
+const authRoutes = require("./routes/auth");
+app.use("/auth", authRoutes);
+
+const profileRoutes = require("./routes/profile");
+app.use("/profile", profileRoutes);
+
+const drinksRoutes = require("./routes/drinks");
+app.use("/drinks", drinksRoutes);
+
 module.exports = app;
