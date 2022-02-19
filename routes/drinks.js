@@ -8,13 +8,15 @@ router.route('/create-drink')
     res.render('drinks/create-drink')
 })
 .post((req,res)=>{
-    const {name,description,origin,alcohol,alcohol_content}=req.body;
-    Drink.create({name,description,origin,alcohol,alcohol_content})
-    .then(res.redirect('/drinks'))
+    const {name,description,origin,alcohol_content}=req.body;
+    Drink.create({name,description,origin,alcohol_content})
+    .then(res.redirect('/'))
+    .catch((error)=>console.log('The create drink didnt work becasue: ',error))
 })
 
 
 //------EDIT-------//
+
 router.route('/:id/edit-drink')
 .get((req,res)=>{
     const id = req.params.id;
@@ -23,9 +25,11 @@ router.route('/:id/edit-drink')
 })
 .post((req,res)=>{
     const id = req.params.id;
-    const {name,description,origin,alcohol,alcohol_content}=req.body;
-    Drink.findByIdAndUpdate(id,{name,description,origin,alcohol,alcohol_content},{new:true})
-    .then(()=>res.redirect('/drinks'))
+    const {name,description,origin,alcohol_content}=req.body;
+    console.log({name,description,origin,alcohol_content})
+    Drink.findByIdAndUpdate(id,{name,description,origin,alcohol_content},{new:true})
+    .then(()=>res.redirect('/'))
+    .catch((error)=>console.log('The edit drink didnt work becasue: ',error))
 })
 
 
