@@ -1,14 +1,23 @@
 
 <h1>Baco</h1>
 
-<article>
+
+{{#if loggedIn}}
+<p>You are logged in!</p>
+<button><a href="/profile">Start drinking</a></button>
+<button><a href="/auth/logout">Logout</a></button>
+
+{{else}}
+
+    <button><a href="/auth/signup">Signup</a></button>
+    <button><a href="/auth/login">Login</a></button>
+    <article>
     <p>
         DESCRIPTION
         &
         HOW TO USE
     </p>
 </article>
+{{/if}}
 
-<button><a href="/auth/signup">Signup</a></button>
-<button><a href="/auth/login">Login</a></button>
 <button><a href="/drinks/">Check all the drinks</a></button>
