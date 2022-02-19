@@ -1,0 +1,24 @@
+<h2>EDIT YOUR DRINK</h2>
+<div>
+    <form action="/drinks/{{_id}}/edit-drink" method="post">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{name}}">
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <input type="text" name="description" value="{{description}}">
+    </div>
+    <div>
+        <label for="origin">Origin</label>
+        <input type="text" name="origin" value="{{origin}}" >
+    </div>
+    <div>
+        <label for="alcohol_content"> % Alcohol</label>
+        <input type="text" name="alcohol_content" value="{{alcohol_content}}">
+    </div>
+        <button type="submit">EDIT</button>
+    </form>
+
+
+</div> 
