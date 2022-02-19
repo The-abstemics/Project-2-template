@@ -18,9 +18,8 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
-/*
 const profileRoutes = require("./routes/profile");
-app.use("/profile", profileRoutes);*/
+app.use("/profile", profileRoutes);
 
 const drinksRoutes = require("./routes/drinks");
 app.use("/drinks", drinksRoutes);

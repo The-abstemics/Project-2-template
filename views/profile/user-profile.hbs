@@ -1,0 +1,22 @@
+<h2>Your profile, drunkard!</h2>
+
+<button><a href="/auth/logout">Logout</a></button>
+
+<!--<img src="{{image}}" alt="profile pic"> -->
+<p>Username: {{username}}</p>
+<p>Sex: {{sex}}</p>
+<p>Age: {{age}}</p>
+<p>Weight: {{weight}}</p>
+<p>Height: {{height}}</p>
+
+<hr>
+
+<p class="counter">% 0.0</p>
+
+<form action="/profile/add-drink" method="GET">
+    <button type="submit">ADD DRINKS</button>
+</form>
+
+<form action="/profile/reset-counter" method="POST">
+    <button type="submir">RESET COUNTER</button>
+</form>
