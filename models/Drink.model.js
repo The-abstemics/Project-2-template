@@ -18,7 +18,9 @@ const drinkSchema = new Schema({
 		type: Number,
 		required: true,
 		},
-	likes: Number,
+	likes: {type: Number,
+		default: 0,
+		},
 	size: {
 		type: Number,
 		required: true,
