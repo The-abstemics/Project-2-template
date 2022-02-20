@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const User = require("../models/User.model")
+const Drink = require("../models/Drink.model")
 
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
@@ -19,5 +20,13 @@ router.route("/")
     
   // res.render("profile/user-profile")
 })
+
+router.route("/add-drink")
+  .get((req, res)=> {
+    Drink.find()
+    .then((drinks)=> {
+      res.render("profile/add-drink", {drinks})
+    })
+  })
 
 module.exports = router;

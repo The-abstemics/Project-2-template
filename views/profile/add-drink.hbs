@@ -1,0 +1,23 @@
+<h2>ADD YOUR DRINKS</h2>
+
+<form class="search-form" action="/profile/add-drink" method="GET">
+    <label for="search-bar"></label>
+    <input type="text" id="search-bar" placeholder="Search your poison">
+    <button class="search-btn"type="submit">Search</button>
+</form>
+
+{{#each drinks}}
+    <div>
+        {{!-- <img src={{image_url}} alt=""> --}}
+        <h3>Name: {{name}}</h3>
+        <p>Description: {{description}}</p>
+        <h4>Origin: {{origin}}</h4>
+        <h4>Alcohol Content: {{alcohol_content}}%</h4>
+        <h4>Likes: {{likes}}</h4>
+    </div>
+    <div>
+        <form action="/profile/{{_id}}" method="POST"> 
+            <button type="submit" >Add This Drink</button>
+        </form>
+    </div>
+{{/each}}
