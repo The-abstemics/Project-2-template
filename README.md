@@ -35,82 +35,39 @@ There are 2 types of users. The unregistered user, and the registered one. In ad
 | GET “/profile/:id/edit-user”                  | Shows profile editor                                | User           |
 | POST “/profile/:id/edit-user“                 | Update the details of the user in a form            | User           |
 | POST “/profile/:id/delete-user”               | Delete the user                                     | User           |
-| GET “/profile/add-drinks”                     | Render a list of drinks to update the quantity of drinks on your profile            | User           |
-| POST “/profile/add-drinks”                    | Add/remove drinks to the users displayed drinks   ] | User           |
+| GET “/profile/add-drink”                      | Render a list of drinks to update the quantity of drinks on your profile            | User           |
+| POST “/profile/add-drink”                     | Add/remove drinks to the users displayed drinks     | User           |
 | **/drinks **                                  |                                                     |                |
 | GET "/drinks"                                 | Renders list of drinks                              | All            |
 | GET “/drinks/create-drink’                    | Shows a form to create a new drink to the DB        | User           |
 | POST “/drinks/create-drink’                   | Create the drink to the DB                          | User           |
-| GET “/drinks/:id/edit-drink”                  | shows a form to edit an existing drink of the DB    | Owner           |
-| POST “/profile/:id/delete-user”               | Update the edited drink on the DB                   | Owner           |
-| POST “/profile/:id/delete-user”               | Delete the drink from the DB                        | Owner           |
+| GET “/drinks/:id/edit-drink”                  | Shows a form to edit an existing drink of the DB    | Owner          |
+| POST “/drinks/:id/edit-drink"                 | Update the edited drink on the DB                   | Owner          |
+| POST “/drinks/:id/delete-drink"               | Delete the drink from the DB                        | Owner          |
+| POST "/drinks/:id/like"						| Sums up a like to that drink						  | Owner          |
 
 ## Models 
 ```
-User : {
-	username: {
-		type: String,
-		required: true, 
-		unique: true
+User : { username: { type: String, required: true, unique: true },
+		 password: { type: String, required: true },
+		 age: { type: Number, required: true },
+		 sex: { type: String, required: true },
+		 height: { type: Number, required: true },
+		 weight: { type: Number, required: true },
+		 image: { type: [String], default: “defaultImageUrl” },
+		 alcohol-lvl: { type: Number },
+		 consumptions: [{ type: Schema.Types.ObjID, ref: “Drink” }]
 		}
-	password: {
-		type: String,
-		required: true
-		}
-	age: {
-		type: Number,
-		required: true
-		}
-	sex: {
-		type: String,
-		required: true
-	        }
-	height:  {
-		type: Number,
-		required: true
-		}
-	weight:  {
-		type: Number,
-		required: true
-		}
-	image: {
-		type: [String], 
-		default: “url: defaultimage.url”
-		}
-	alcohol-lvl: {
-		       type: Number,
-		       }
-	consumptions: [{ 
-			type: Schema.Types.ObjID, 
-			ref: “Drink”
-			}]
-	}
 ```
 
 ```
-Drink: {	
-	name: { 
-		type: String, 
-		required: true 
-	},
-	description: {
-		type: String,
-		required: true,
+Drink:	{ name: { type: String, required: true },
+		  description: { type: String, required: true },
+		  origin: { type: String, required: true },
+		  alcohol-content: { type: Number, required: true },
+		  likes: { type: Number, default: 0 },
+		  size: { type: Number, required: true, default: 33 },
+		  image: {type: String, default: "defaultImageUrl"}
 		}
-	origin: {
-		type: String,
-		required: true,
-		}
-	alcohol-content: {
-		type: Number,
-		required: true,
-		}
-	likes: Number
-	size: {
-		type: Number,
-		required: true,
-		default: 33
-	          }
-	}
 ```
 	
