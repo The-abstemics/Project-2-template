@@ -36,10 +36,13 @@ router.route('/:id/edit-drink')
     Drink.findById(id)
     .then((drink)=>res.render('drinks/edit-drink',drink))
 })
-.post((req,res)=>{
+.post(fileUploader.single("image"),(req,res)=>{
     const id = req.params.id;
-    const {name,description,origin,alcohol_content,image}=req.body;
-    console.log({name,description,origin,alcohol_content})
+    const {name,description,origin,alcohol_content}=req.body;
+    const image = req.file && req.file.path
+    // if (req.file){
+    //     image=req.file.path
+    // }
     Drink.findByIdAndUpdate(id,{name,description,origin,alcohol_content,image},{new:true})
     .then(()=>res.redirect('/drinks'))
     .catch((error)=>console.log('The edit drink didnt work becasue: ',error))
