@@ -27,19 +27,28 @@ const userSchema = new Schema({
 		type: Number,
 		required: true
 		},
-	image: {
-		type: [String], 
-		default: "url: defaultimage.url"
-		},
+
 	alcohol_lvl: {
 		       type: Number,
 		       },
 	consumptions: { 
 			type: Schema.Types.ObjectId, 
 			ref: "Drink"
-			}
+			},
+	image: {
+		type: [String],
+		default: "https://cdn-icons.flaticon.com/png/512/2400/premium/2400780.png?token=exp=1645444792~hmac=579d203b709f95eba6fd43160e2d35ab"
+		},
+	favorite_drinks: []
 });
 
+
 const User = model('User', userSchema);
+
+User.image = {
+	normal: "https://cdn-icons.flaticon.com/png/512/6124/premium/6124471.png?token=exp=1645444792~hmac=a5b202b26d3c787b9415279f86edcae2",
+	drunk: "https://nsdhrws",
+	wasted: "https://gr5474os",
+}
 
 module.exports = User;
