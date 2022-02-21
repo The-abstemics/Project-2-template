@@ -59,7 +59,7 @@ router
   .post('/:id/delete', (req, res, next) => {
       const id = req.params.id;
       Drink.findByIdAndDelete(id)
-        .then(() => res.redirect("/"))
+        .then(() => res.redirect("/drinks"))
         .catch(() => `Error while deleting this drink`)
 });
 
