@@ -80,6 +80,7 @@ router.route('/login')
 
   User.findOne({ username})
   .then((user)=> {
+    //console.log(user)
     if(!user){
       return res
         .status(400)
@@ -96,7 +97,7 @@ router.route('/login')
       const id = req.params.id;
       User.findById(id)
       .then(()=> {
-         res.redirect("/")
+         res.redirect("/profile")
       })
     })
   })
