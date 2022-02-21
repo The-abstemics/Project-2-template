@@ -56,33 +56,16 @@ router
 router
 .post('/:id/like', (req, res, next) =>{
     const id = req.params.id;
-    const dom = new JSDOM(res.body);
-    //console.log(dom.window.document.querySelector('#likeImg'));
-    
     Drink.findByIdAndUpdate(id,{$inc: {likes:1}} , {new: true})
         .then(()=>{
-            Axios
-                .get(`https://localhost:3000/drinks`)
-                
-        //dom.window.document.querySelector("#likeImg").classList.toggle("hidden")
-        // dom.window.document.querySelector("#noLikeImg").classList.toggle("hidden")
-        //res.redirect("/")
-        //console.log("LIKES: ", drink)
+            res.redirect('/')
         })
-        .catch(() => `Something went wrong`)
+        .catch(() => res.code(401).send(`Something went wrong`))
 })
 
 //------DISPLAY-------//
 
 router.get('/',(req, res)=>{
-    // let loggedIn = false;
-    // if(isLoggedIn){
-    //     loggedIn = true;
-    //     Drink.find()
-    //     .then((drinks)=>{
-    //         res.render('drinks/drinks', {drinks}, {isLoggedIn})
-    //     }) 
-    // }
     Drink.find()
     .then((drinks)=>{
         res.render('drinks/drinks', {drinks})
