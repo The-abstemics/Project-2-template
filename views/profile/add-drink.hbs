@@ -8,21 +8,20 @@
 
 {{#each drinks}}
     <div>
-        {{!-- <img src={{image_url}} alt=""> --}}
         <h3>Name: {{name}}</h3>
         <p>Description: {{description}}</p>
         <h4>Origin: {{origin}}</h4>
         <h4>Alcohol Content: {{alcohol_content}}%</h4>
         <h4>Likes: {{likes}}</h4>
-        <td class="quantity">
-            <input type="number" value="0" min="0" placeholder="Quantity" />
-        </td>
+        <img src="{{image}}" alt="imagen-birra" width="80px">
+        <input type="number" min="0" placeholder="Quantity" name="quantity" id="quantity">
+        
     </div>
     
 {{/each}}
 
 <div>
-        <form action="/profile/{{_id}}" method="POST"> 
+        <form action="/profile/add-drink/" method="POST"> 
             <button type="submit" >Add</button>
         </form>
     </div>

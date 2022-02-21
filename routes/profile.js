@@ -29,7 +29,15 @@ router.route("/add-drink")
     })
   })
   .post((req, res)=> {
-
-    res.redirect("/")
+    console.log('entrooooooooooooooo')
+  //const quantity=document.getElementById('quantity').value;
+  //console.log(quantity);
+  Drink.find()
+  .then((drinks) => drinks.forEach(drink => {
+    const alcohol_content=drink.alcohol_content
+    
+    let total=0;
+    total += alcohol_content;
+    console.log('total:::::::::::::',alcohol_content, quantity)}))
   })
 module.exports = router;

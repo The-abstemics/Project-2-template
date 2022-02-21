@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 const Drink = require("../models/Drink.model")
 const User = require("../models/User.model")
+const document = require("jsdom");
+const { JSDOM } = document;
 
-const isLoggedIn = require("../middleware/isLoggedIn")
-const isOwner = require("../models/Drink.model")
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 //-----CREATE-------//
 router.route('/create-drink')
@@ -56,29 +57,16 @@ router
 router
 .post('/:id/like', (req, res, next) =>{
     const id = req.params.id;
-    const likes = req.query.body;
-    Drink.findByIdAndUpdate(id, {likes}, {new: true})
-        .then((drink)=>{
-        drink.likes += 1
-        //document.querySelector("#likeImg").removeAttribute("hidden")
-        //document.querySelector("#noLikeImg").setAttribute("hidden")
-        res.redirect("/")
-        console.log("LIKES: ", drink)
+    Drink.findByIdAndUpdate(id,{$inc: {likes:1}} , {new: true})
+        .then(()=>{
+            res.redirect('/')
         })
-        //.catch(() => `Something went wrong`)
+        .catch(() => res.code(401).send(`Something went wrong`))
 })
 
 //------DISPLAY-------//
 
 router.get('/',(req, res)=>{
-    // let loggedIn = false;
-    // if(isLoggedIn){
-    //     loggedIn = true;
-    //     Drink.find()
-    //     .then((drinks)=>{
-    //         res.render('drinks/drinks', {drinks}, {isLoggedIn})
-    //     }) 
-    // }
     Drink.find()
     .populate("owner")
     .then((drinks)=>{
