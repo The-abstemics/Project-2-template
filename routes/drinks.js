@@ -42,9 +42,6 @@ router.route('/:id/edit-drink')
     const id = req.params.id;
     const {name,description,origin,alcohol_content}=req.body;
     const image = req.file && req.file.path
-    // if (req.file){
-    //     image=req.file.path
-    // }
     Drink.findByIdAndUpdate(id,{name,description,origin,alcohol_content,image},{new:true})
     .then(()=>res.redirect('/drinks'))
     .catch((error)=>console.log('The edit drink didnt work becasue: ',error))
@@ -69,6 +66,18 @@ router
 .post('/:id/like', (req, res, next) =>{
     const id = req.params.id;
     Drink.findByIdAndUpdate(id,{$inc: {likes:1}} , {new: true})
+        .then(()=>{
+            res.redirect('/')
+        })
+        .catch(() => res.code(401).send(`Something went wrong`))
+})
+
+//------DISLIKES-------//
+
+router
+.post('/:id/dislike', (req, res, next) =>{
+    const id = req.params.id;
+    Drink.findByIdAndUpdate(id,{$inc: {likes:-1}} , {new: true})
         .then(()=>{
             res.redirect('/')
         })
