@@ -7,13 +7,7 @@ const isLoggedIn = require("../middleware/isLoggedIn")
 
 /* GET home page. */
 router.get('/', (req, res)=> {
-  let loggedIn = false;
-  if(isLoggedIn){
-      loggedIn = true;
-      res.render("index", {loggedIn});
-      }
-  
-  res.render("index")
+  res.render("index");
 });
 
 

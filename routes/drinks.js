@@ -14,9 +14,11 @@ router.route('/create-drink')
     res.render('drinks/create-drink')
 })
 .post((req,res)=>{
-    const {name,description,origin,alcohol_content}=req.body;
-    Drink.create({name,description,origin,alcohol_content})
-    .then(res.redirect('/'))
+    const {name,description,origin,alcohol_content,image}=req.body;
+    const owner = req.session.userId;
+    console.log(owner)
+    Drink.create({name,description,origin,alcohol_content,image,owner:owner})
+    .then(res.redirect('/drinks'))
     .catch((error)=>console.log('The create drink didnt work becasue: ',error))
 })
 
@@ -31,10 +33,10 @@ router.route('/:id/edit-drink')
 })
 .post((req,res)=>{
     const id = req.params.id;
-    const {name,description,origin,alcohol_content}=req.body;
+    const {name,description,origin,alcohol_content,image}=req.body;
     console.log({name,description,origin,alcohol_content})
-    Drink.findByIdAndUpdate(id,{name,description,origin,alcohol_content},{new:true})
-    .then(()=>res.redirect('/'))
+    Drink.findByIdAndUpdate(id,{name,description,origin,alcohol_content,image},{new:true})
+    .then(()=>res.redirect('/drinks'))
     .catch((error)=>console.log('The edit drink didnt work becasue: ',error))
 })
 

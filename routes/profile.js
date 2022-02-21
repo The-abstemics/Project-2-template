@@ -10,10 +10,9 @@ const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.route("/")
-.get((req, res)=> {
-    
-    console.log("HEEEY: ", req.session)
-    User.findOne(req.session.user)
+.get(isLoggedIn, (req, res)=> {
+  
+    User.findById(req.session.userId)
     .then((profile)=> {
         res.render("profile/user-profile", profile)
     })
