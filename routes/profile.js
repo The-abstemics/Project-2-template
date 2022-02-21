@@ -28,15 +28,16 @@ router.route("/add-drink")
     })
   })
   .post((req, res)=> {
-    console.log('entrooooooooooooooo')
-  //const quantity=document.getElementById('quantity').value;
-  //console.log(quantity);
+    //console.log(req.body.quantity[3])
+  let i=0;
+  let total=0;
+  
   Drink.find()
   .then((drinks) => drinks.forEach(drink => {
     const alcohol_content=drink.alcohol_content
-    
-    let total=0;
-    total += alcohol_content;
-    console.log('total:::::::::::::',alcohol_content, quantity)}))
+    const quantity = req.body.quantity[i];
+    total+=(alcohol_content*quantity)/100
+    i++;
+    console.log('total:::::::::::::',alcohol_content,total)}))
   })
 module.exports = router;

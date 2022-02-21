@@ -34,9 +34,9 @@ const userSchema = new Schema({
 	alcohol_lvl: {
 		       type: Number,
 		       },
-	consumptions: { 
-			type: Schema.Types.ObjectId, 
-			ref: "Drink"
+	bac: {
+			type:Number,
+			default:0
 			}
 });
 

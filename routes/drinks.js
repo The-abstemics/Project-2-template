@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 const Drink = require("../models/Drink.model")
 const User = require("../models/User.model")
-const document = require("jsdom");
-const { JSDOM } = document;
 
 const isLoggedIn = require("../middleware/isLoggedIn");
 const { Axios } = require('axios');
