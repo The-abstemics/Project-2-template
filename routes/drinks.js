@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 const Drink = require("../models/Drink.model")
 const User = require("../models/User.model")
+const document = require("jsdom");
+const { JSDOM } = document;
 
-const isLoggedIn = require("../middleware/isLoggedIn")
+const isLoggedIn = require("../middleware/isLoggedIn");
+const { Axios } = require('axios');
 
 //-----CREATE-------//
 router.route('/create-drink')
@@ -53,16 +56,20 @@ router
 router
 .post('/:id/like', (req, res, next) =>{
     const id = req.params.id;
-    const likes = req.query.body;
-    Drink.findByIdAndUpdate(id, {likes}, {new: true})
-        .then((drink)=>{
-        drink.likes += 1
-        //document.querySelector("#likeImg").removeAttribute("hidden")
-        //document.querySelector("#noLikeImg").setAttribute("hidden")
-        res.redirect("/")
-        console.log("LIKES: ", drink)
+    const dom = new JSDOM(res.body);
+    //console.log(dom.window.document.querySelector('#likeImg'));
+    
+    Drink.findByIdAndUpdate(id,{$inc: {likes:1}} , {new: true})
+        .then(()=>{
+            Axios
+                .get(`https://localhost:3000/drinks`)
+                
+        //dom.window.document.querySelector("#likeImg").classList.toggle("hidden")
+        // dom.window.document.querySelector("#noLikeImg").classList.toggle("hidden")
+        //res.redirect("/")
+        //console.log("LIKES: ", drink)
         })
-        //.catch(() => `Something went wrong`)
+        .catch(() => `Something went wrong`)
 })
 
 //------DISPLAY-------//
