@@ -78,7 +78,7 @@ router.route('/login')
       .render("auth/login", { errorMessage: "Please provide your login details." });
   }
 
-  User.findOne({ username})
+  User.findOne({ username })
   .then((user)=> {
     //console.log(user)
     if(!user){
@@ -93,12 +93,11 @@ router.route('/login')
             .status(400)
             .render("auth/login", { errorMessage: "Wrong credentials." });
       }
+      
       req.session.userId = user._id;
-      const id = req.params.id;
-      User.findById(id)
-      .then(()=> {
-         res.redirect("/profile")
       })
+      .then(()=> {
+        res.redirect("/profile")
     })
   })
 });
