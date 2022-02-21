@@ -1,6 +1,6 @@
 <h2>CREATE YOUR DRINK</h2>
 <div>
-    <form action="/drinks/create-drink" method="post">
+    <form action="/drinks/create-drink" method="post" enctype="multipart/form-data">
     <div>
         <label for="name">Name</label>
         <input type="text" name="name">
@@ -18,10 +18,9 @@
         <input type="text" name="alcohol_content">
     </div>
     <div>
-        <label for="image">Image</label>
-        <input type="text" name="image">
-    </div>
+        <label for="image">Upload Picture</label>
+        <input type="file" name="image">
+    </div>  
       <button type="submit">CREATE</button>
     </form>
-    
-</div> 
+</div>      

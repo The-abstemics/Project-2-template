@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Drink = require("../models/Drink.model")
 const User = require("../models/User.model")
-const document = require("jsdom");
-const { JSDOM } = document;
+const fileUploader= require("../config/cloudinary.config")
 
 const isLoggedIn = require("../middleware/isLoggedIn");
 const { Axios } = require('axios');
@@ -13,10 +12,14 @@ router.route('/create-drink')
 .get((req,res)=>{
     res.render('drinks/create-drink')
 })
-.post((req,res)=>{
-    const {name,description,origin,alcohol_content,image}=req.body;
+.post(fileUploader.single("image"), (req,res)=>{
+    const {name,description,origin,alcohol_content}=req.body;
     const owner = req.session.userId;
-    console.log(owner)
+    if (req.file.path){
+    const image = req.file.path
+    } else {
+    image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Birra_Moretti_Logo_2015.jpeg/640px-Birra_Moretti_Logo_2015.jpeg'
+    }
     Drink.create({name,description,origin,alcohol_content,image,owner:owner})
     .then(res.redirect('/drinks'))
     .catch((error)=>console.log('The create drink didnt work becasue: ',error))
@@ -39,6 +42,8 @@ router.route('/:id/edit-drink')
     .then(()=>res.redirect('/drinks'))
     .catch((error)=>console.log('The edit drink didnt work becasue: ',error))
 })
+
+
 
 
 //------DELETE-------//
