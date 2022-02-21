@@ -1,6 +1,7 @@
 <h2>DRINKS LIST</h2>
 
 {{#each drinks}}
+
     <div>
         {{!-- <img src={{image_url}} alt=""> --}}
         <h3>Name: {{name}}</h3>
@@ -28,13 +29,11 @@
         </form>
     </div>
     {{!-- {{/if}} --}}
+<hr />
+
 {{/each}}
 
-<hr>
 {{!-- {{#if loggedIn}} --}}
 <button><a href="/drinks/create-drink">Add Your Drink</a></button>
 <button><a href="/auth/logout">Logout</a></button>
- {{!-- {{/if}} --}}
-
-
-
+{{!-- {{/if}} --}}

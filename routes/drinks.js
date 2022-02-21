@@ -6,7 +6,6 @@ const document = require("jsdom");
 const { JSDOM } = document;
 
 const isLoggedIn = require("../middleware/isLoggedIn");
-const { Axios } = require('axios');
 
 //-----CREATE-------//
 router.route('/create-drink')
@@ -26,10 +25,12 @@ router.route('/create-drink')
 //------EDIT-------//
 
 router.route('/:id/edit-drink')
-.get((req,res)=>{
+.get(isOwner, (req,res)=>{
     const id = req.params.id;
     Drink.findById(id)
-    .then((drink)=>res.render('drinks/edit-drink',drink))
+    .then((drink)=>{
+        res.render('drinks/edit-drink', drink)
+        });
 })
 .post((req,res)=>{
     const id = req.params.id;
@@ -67,8 +68,20 @@ router
 
 router.get('/',(req, res)=>{
     Drink.find()
+    .populate("owner")
     .then((drinks)=>{
-        res.render('drinks/drinks', {drinks})
+         let drinkOwner = false;
+        drinks.forEach((drink)=> {
+           
+            
+            if(req.session.userId && drink.owner._id == req.session.userId){
+                drinkOwner = true;
+            }
+        }
+        
+    )
+    res.render('drinks/drinks', {drinks, drinkOwner})
+        //res.render('drinks/drinks', {drinks})
     })
     .catch((error)=>console.log('Something went wrong: ', error))
 })
