@@ -29,7 +29,7 @@ const userSchema = new Schema({
 		},
 	image: {
 		type: [String], 
-		default: "url: defaultimage.url"
+		default: "https://cdn-icons.flaticon.com/png/512/560/premium/560277.png?token=exp=1645444021~hmac=0c3cbf5bef3347e4cff1fa2257ceee02"
 		},
 	alcohol_lvl: {
 		       type: Number,
