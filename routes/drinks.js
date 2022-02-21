@@ -13,7 +13,7 @@ router.route('/create-drink')
 .post((req,res)=>{
     const {name,description,origin,alcohol_content}=req.body;
     Drink.create({name,description,origin,alcohol_content})
-    .then(res.redirect('/'))
+    .then(res.redirect('/drinks'))
     .catch((error)=>console.log('The create drink didnt work becasue: ',error))
 })
 
@@ -31,7 +31,7 @@ router.route('/:id/edit-drink')
     const {name,description,origin,alcohol_content}=req.body;
     console.log({name,description,origin,alcohol_content})
     Drink.findByIdAndUpdate(id,{name,description,origin,alcohol_content},{new:true})
-    .then(()=>res.redirect('/'))
+    .then(()=>res.redirect('/drinks'))
     .catch((error)=>console.log('The edit drink didnt work becasue: ',error))
 })
 
