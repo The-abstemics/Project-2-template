@@ -3,18 +3,24 @@ var router = express.Router();
 const Drink = require("../models/Drink.model")
 const User = require("../models/User.model")
 
+const fileUploader= require("../config/cloudinary.config")
+
+
 const isLoggedIn = require("../middleware/isLoggedIn");
-const { Axios } = require('axios');
 
 //-----CREATE-------//
 router.route('/create-drink')
 .get((req,res)=>{
     res.render('drinks/create-drink')
 })
-.post((req,res)=>{
-    const {name,description,origin,alcohol_content,image}=req.body;
+.post(fileUploader.single("image"), (req,res)=>{
+    const {name,description,origin,alcohol_content}=req.body;
     const owner = req.session.userId;
-    console.log(owner)
+    if (req.file.path){
+    const image = req.file.path
+    } else {
+    image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Birra_Moretti_Logo_2015.jpeg/640px-Birra_Moretti_Logo_2015.jpeg'
+    }
     Drink.create({name,description,origin,alcohol_content,image,owner:owner})
     .then(res.redirect('/drinks'))
     .catch((error)=>console.log('The create drink didnt work becasue: ',error))
@@ -24,10 +30,12 @@ router.route('/create-drink')
 //------EDIT-------//
 
 router.route('/:id/edit-drink')
-.get((req,res)=>{
+.get(isOwner, (req,res)=>{
     const id = req.params.id;
     Drink.findById(id)
-    .then((drink)=>res.render('drinks/edit-drink',drink))
+    .then((drink)=>{
+        res.render('drinks/edit-drink', drink)
+        });
 })
 .post((req,res)=>{
     const id = req.params.id;
@@ -37,6 +45,8 @@ router.route('/:id/edit-drink')
     .then(()=>res.redirect('/drinks'))
     .catch((error)=>console.log('The edit drink didnt work becasue: ',error))
 })
+
+
 
 
 //------DELETE-------//
@@ -65,8 +75,20 @@ router
 
 router.get('/',(req, res)=>{
     Drink.find()
+    .populate("owner")
     .then((drinks)=>{
-        res.render('drinks/drinks', {drinks})
+         let drinkOwner = false;
+        drinks.forEach((drink)=> {
+           
+            
+            if(req.session.userId && drink.owner._id == req.session.userId){
+                drinkOwner = true;
+            }
+        }
+        
+    )
+    res.render('drinks/drinks', {drinks, drinkOwner})
+        //res.render('drinks/drinks', {drinks})
     })
     .catch((error)=>console.log('Something went wrong: ', error))
 })

@@ -27,11 +27,12 @@ const drinkSchema = new Schema({
 		default: 33
 	          },
 	image:{
-		type:String,
+		type: String,
 		default:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Birra_Moretti_Logo_2015.jpeg/640px-Birra_Moretti_Logo_2015.jpeg'
 	},
 	owner:{
-		type:String,
+		type: Schema.Types.ObjectId,
+		ref: "User"
 	}
 });
 
