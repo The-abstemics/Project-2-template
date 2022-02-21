@@ -1,6 +1,6 @@
 <h2>EDIT YOUR DRINK</h2>
 <div>
-    <form action="/drinks/{{_id}}/edit-drink" method="post">
+    <form action="/drinks/{{_id}}/edit-drink" method="post" enctype="multipart/form-data">
     <div>
         <label for="name">Name</label>
         <input type="text" name="name" value="{{name}}">
@@ -18,8 +18,8 @@
         <input type="text" name="alcohol_content" value="{{alcohol_content}}">
     </div>
     <div>
-        <label for="image"> Image</label>
-        <input type="text" name="image" value="{{image}}">
+        <label for="image">Upload Picture</label>
+        <input type="file" name="image" >
     </div>
         <button type="submit">EDIT</button>
     </form>
