@@ -1,37 +1,41 @@
 <h2>DRINKS LIST</h2>
 
 {{#each drinks}}
-    <div>
-        {{!-- <img src={{image_url}} alt=""> --}}
-        <h3>Name: {{name}}</h3>
-        <p>Description: {{description}}</p>
-        <h4>Origin: {{origin}}</h4>
-        <h4>Alcohol Content: {{alcohol_content}}%</h4>
-        <h4>Likes: {{likes}}</h4>
-        <img src="{{image}}" alt="birra" width="80" height="80">
-        <img src="/images/like.png" width="30" height="30" id="likeImg" hidden />
-        <img src="/images/nolike.png" width="30" height="30" id="noLikeImg" />
-    </div>
-    {{!-- {{#if loggedIn}} --}}
-    <div>
-        <form action="/drinks/{{_id}}/like" method="POST"> 
-            <button type="submit" >Like</button>
-        </form>
+  <div>
 
-        <button><a href="/drinks/{{_id}}/edit-drink">Edit This Drink</a></button>
-        
-        <form action="/drinks/{{_id}}/delete" method="POST"> 
-            <button type="submit" >Delete</button>
-        </form>
-    </div>
-    {{!-- {{/if}} --}}
+    <h3>Name: {{name}}</h3>
+    <p>Description: {{description}}</p>
+    <h4>Origin: {{origin}}</h4>
+    <h4>Alcohol Content: {{alcohol_content}}%</h4>
+    <h4>Likes: {{likes}}</h4>
+    <img src="{{image}}" alt="birra" width="80" height="80" />
+    <img src="/images/like.png" width="30" height="30" id="likeImg" hidden />
+    <img src="/images/nolike.png" width="30" height="30" id="noLikeImg" />
+  </div>
+  {{!-- {{#if loggedIn}} --}}
+  <div>
+    <form action="/drinks/{{_id}}/like" method="POST">
+      <button type="submit">Like</button>
+    </form>
+  </div>
+
+  {{#if ../drinkOwner}}
+      <button><a href="/drinks/{{_id}}/edit-drink">Edit This Drink</a></button>
+
+      <form action="/drinks/{{_id}}/delete" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    {{/if}}
+
+  <hr>
+  {{!-- {{/if}} --}}
 {{/each}}
 
-<hr>
+
+
+
+<hr />
 {{!-- {{#if loggedIn}} --}}
 <button><a href="/drinks/create-drink">Add Your Drink</a></button>
 <button><a href="/auth/logout">Logout</a></button>
- {{!-- {{/if}} --}}
-
-
-
+{{!-- {{/if}} --}}
