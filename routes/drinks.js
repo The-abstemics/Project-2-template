@@ -7,6 +7,7 @@ const fileUploader= require("../config/cloudinary.config")
 
 
 const isLoggedIn = require("../middleware/isLoggedIn");
+const { Axios } = require('axios');
 
 //-----CREATE-------//
 router.route('/create-drink')
@@ -16,8 +17,10 @@ router.route('/create-drink')
 .post(fileUploader.single("image"), (req,res)=>{
     const {name,description,origin,alcohol_content}=req.body;
     const owner = req.session.userId;
-    if (req.file.path){
-    const image = req.file.path
+    let image = ''
+    if (req.file){
+        console.log(req.file)
+    image = req.file.path
     } else {
     image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Birra_Moretti_Logo_2015.jpeg/640px-Birra_Moretti_Logo_2015.jpeg'
     }
@@ -30,12 +33,10 @@ router.route('/create-drink')
 //------EDIT-------//
 
 router.route('/:id/edit-drink')
-.get(isOwner, (req,res)=>{
+.get((req,res)=>{
     const id = req.params.id;
     Drink.findById(id)
-    .then((drink)=>{
-        res.render('drinks/edit-drink', drink)
-        });
+    .then((drink)=>res.render('drinks/edit-drink',drink))
 })
 .post((req,res)=>{
     const id = req.params.id;
@@ -75,20 +76,8 @@ router
 
 router.get('/',(req, res)=>{
     Drink.find()
-    .populate("owner")
     .then((drinks)=>{
-         let drinkOwner = false;
-        drinks.forEach((drink)=> {
-           
-            
-            if(req.session.userId && drink.owner._id == req.session.userId){
-                drinkOwner = true;
-            }
-        }
-        
-    )
-    res.render('drinks/drinks', {drinks, drinkOwner})
-        //res.render('drinks/drinks', {drinks})
+        res.render('drinks/drinks', {drinks})
     })
     .catch((error)=>console.log('Something went wrong: ', error))
 })
