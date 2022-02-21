@@ -31,15 +31,17 @@ const userSchema = new Schema({
 	alcohol_lvl: {
 		       type: Number,
 		       },
-	consumptions: { 
-			type: Schema.Types.ObjectId, 
-			ref: "Drink"
+
+	bac: {
+			type:Number,
+			default:0
 			},
 	image: {
 		type: [String],
 		default: "https://cdn-icons.flaticon.com/png/512/2400/premium/2400780.png?token=exp=1645444792~hmac=579d203b709f95eba6fd43160e2d35ab"
 		},
 	favorite_drinks: []
+
 });
 
 
