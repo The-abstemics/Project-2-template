@@ -28,5 +28,8 @@ router.route("/add-drink")
       res.render("profile/add-drink", {drinks})
     })
   })
+  .post((req, res)=> {
 
+    res.redirect("/")
+  })
 module.exports = router;
