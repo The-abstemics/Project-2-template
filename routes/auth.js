@@ -60,8 +60,8 @@ router.route("/signup")
           })
           .then((user) => {
             // Bind the user to the session object
-            req.session.user = user;
-            res.redirect("/");
+            req.session.userId = user._id;
+            res.redirect("/profile");
           })})
 })
 
