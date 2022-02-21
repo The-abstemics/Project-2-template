@@ -11,8 +11,10 @@ router.route('/create-drink')
     res.render('drinks/create-drink')
 })
 .post((req,res)=>{
-    const {name,description,origin,alcohol_content}=req.body;
-    Drink.create({name,description,origin,alcohol_content})
+    const {name,description,origin,alcohol_content,image}=req.body;
+    const owner = req.session.userId;
+    console.log(owner)
+    Drink.create({name,description,origin,alcohol_content,image,owner:owner})
     .then(res.redirect('/drinks'))
     .catch((error)=>console.log('The create drink didnt work becasue: ',error))
 })
