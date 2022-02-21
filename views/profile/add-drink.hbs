@@ -6,6 +6,7 @@
     <button class="search-btn"type="submit">Search</button>
 </form>
 
+<form action="/profile/add-drink/" method="POST"> 
 {{#each drinks}}
     <div>
         <h3>Name: {{name}}</h3>
@@ -14,14 +15,11 @@
         <h4>Alcohol Content: {{alcohol_content}}%</h4>
         <h4>Likes: {{likes}}</h4>
         <img src="{{image}}" alt="imagen-birra" width="80px">
-        <input type="number" min="0" placeholder="Quantity" name="quantity" id="quantity">
         
+            <input type="number" min="0" placeholder="Quantity" value="0" name="quantity" id="quantity">
+       
     </div>
-    
+    <hr>
 {{/each}}
-
-<div>
-        <form action="/profile/add-drink/" method="POST"> 
-            <button type="submit" >Add</button>
-        </form>
-    </div>
+<button type="submit" >Add</button>
+ </form>
