@@ -14,6 +14,7 @@ router.route("/")
 .get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
   .then((profile) => {
+    console.log("THIIIIIIIIS", profile.image[1])
     res.render("profile/user-profile", profile);
   });
 });
@@ -86,7 +87,8 @@ router.route("/add-drink")
 
 
 
-//-------Search------//
+//-------Search------
+
 
 router.get("/add-drink/search", (req, res) => {
   const drinkName = req.query.drinkName;
