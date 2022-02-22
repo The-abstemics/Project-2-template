@@ -8,6 +8,7 @@ const Drink = require("../models/Drink.model");
 
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const session = require("express-session");
 
 
 router.route("/")
@@ -68,10 +69,11 @@ router.route("/add-drink")
         const weight = user.weight;
         const gender = user.sex;
         let r = 0;
+        let bac = 0;
+        console.log(req.session.cookie._expires.toString())
+        console.log('stringaaaa:',(req.session.cookie._expires.toString()).slice(11,18))
         gender === "male" ? (r = 0.55) : (r = 0.68);
-        let bac = (total/weight*r).toFixed(2);
-        console.log(bac)
-      
+        bac = Number((Number(total.toFixed(2))/(weight*r)).toFixed(2))+user.bac;
         User.findByIdAndUpdate(id, { $set: { bac: bac } }, { new: true }).then(() => res.redirect("/profile"))
       });
     });
