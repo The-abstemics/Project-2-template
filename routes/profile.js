@@ -9,13 +9,35 @@ const Drink = require("../models/Drink.model");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.route("/").get(isLoggedIn, (req, res) => {
-  User.findById(req.session.userId).then((profile) => {
-    console.log(profile);
+router.route("/")
+.get(isLoggedIn, (req, res) => {
+  User.findById(req.session.userId)
+  .then((profile) => {
     res.render("profile/user-profile", profile);
   });
+});
 
-  // res.render("profile/user-profile")
+router.route("/:id/edit-profile")
+.get(isLoggedIn, (req, res) => {
+  User.findById(req.session.userId)
+  .then((user) => {
+    res.render("profile/edit-profile", user)
+  })
+})
+.post((req, res) => {
+  const { age, weight, height, sex, image} = req.body;
+  const id = req.session.userId;
+  console.log("dudeee",req.session.userId)
+  /*
+  if (password.length < 8) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Your password needs to be at least 8 characters long.",
+    });
+  }*/
+
+  User.findByIdAndUpdate(id,  { age, weight, height, sex, image }, {new: true})
+  .then(res.redirect("/profile"))
+
 });
 
 router
