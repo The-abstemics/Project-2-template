@@ -24,7 +24,7 @@ const drinkSchema = new Schema({
 	size: {
 		type: Number,
 		required: true,
-		default: 33
+		default: 330
 	          },
 	image:{
 		type: String,
