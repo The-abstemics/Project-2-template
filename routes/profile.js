@@ -86,7 +86,7 @@ router.route("/add-drink")
 
 
 
-/-------Search------
+//-------Search------
 
 router.get("/add-drink/search", (req, res) => {
   const drinkName = req.query.drinkName;
