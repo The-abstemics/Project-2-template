@@ -104,13 +104,15 @@ router.route('/login')
 });
 
 router.get("/logout", isLoggedIn, (req, res) => {
-  req.session.destroy((err) => {
+  User.findByIdAndUpdate(req.session.userId,{bac:0},{new:true})
+  .then(()=>{req.session.destroy((err) => {
     if (err) {
       return res
         .status(500)
         .render("auth/logout", { errorMessage: err.message });
     }
-    res.redirect("/");
+    res.redirect("/");})
+  
   });
 });
 
