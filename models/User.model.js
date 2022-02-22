@@ -23,34 +23,33 @@ const userSchema = new Schema({
 		type: Number,
 		required: true
 		},
-	weight:  {
+	weight: {
 		type: Number,
 		required: true
 		},
-
 	alcohol_lvl: {
 		       type: Number,
 		       },
-
 	bac: {
 			type:Number,
 			default:0
 			},
-	image: {
-		type: [String],
-		default: "https://cdn-icons.flaticon.com/png/512/2400/premium/2400780.png?token=exp=1645444792~hmac=579d203b709f95eba6fd43160e2d35ab"
+	image: { 	
+		type: [],
+		default: ["/images/start.jpg","/images/drink.jpg","/images/wasted.jpg"]
 		},
-	favorite_drinks: []
+		
+	favorite_drinks: [],
+
+	startDrinking:{	
+		type:Number,
+		default:0
+	}
 
 });
 
 
 const User = model('User', userSchema);
 
-User.image = {
-	normal: "https://cdn-icons.flaticon.com/png/512/6124/premium/6124471.png?token=exp=1645444792~hmac=a5b202b26d3c787b9415279f86edcae2",
-	drunk: "https://nsdhrws",
-	wasted: "https://gr5474os",
-}
 
 module.exports = User;
