@@ -89,7 +89,13 @@ router
 
 router.get('/',(req, res)=>{
     Drink.find()
+    .populate("owner")
     .then((drinks)=>{
+        drinks.forEach((drink) => {
+            if (req.session && req.session.userId == drink.owner._id){
+                drink.isOwner = true;
+            }
+        })
         res.render('drinks/drinks', {drinks})
     })
     .catch((error)=>console.log('Something went wrong: ', error))

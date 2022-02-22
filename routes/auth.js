@@ -15,6 +15,7 @@ router.route("/signup")
 })
 .post((req, res)=> {
     const { username, sex, weight, height, age, password } = req.body;
+    console.log({ username, sex, weight, height, age, password })
 
     if (!username || !password || !sex || !weight || !height || ! age ) {
         return res

@@ -10,6 +10,7 @@
         <h4>Alcohol Content: {{alcohol_content}}%</h4>
         <h4>Likes: <span id="likeCounter-{{_id}}">{{likes}}</span></h4>
         <img src="{{image}}" alt="birra" width="80" height="80">
+
         <img  src="/images/like.png" width="30" height="30" id="like-{{_id}}" hidden />
         <img src="/images/nolike.png" width="30" height="30" id="nolike-{{_id}}" />
     </div>
@@ -20,11 +21,16 @@
         </form>
         
 
-        <button><a href="/drinks/{{_id}}/edit-drink">Edit This Drink</a></button>
-        
+    {{#if isOwner}}
+        <form action="/drinks/{{_id}}/edit-drink" method="GET"></form>
+            <button><a href="/drinks/{{_id}}/edit-drink">Edit This Drink</a></button>
+        </form>
+
         <form action="/drinks/{{_id}}/delete" method="POST"> 
             <button type="submit" >Delete</button>
         </form>
+    {{/if}}
+
     </div>
     {{!-- {{/if}} --}}
 <hr />

@@ -1,0 +1,35 @@
+<h2>Edit your profile</h2>
+<div>
+    <form action="/profile/:id/edit-profile" method="POST" id="edit-profile">
+
+        <div>
+            <label for="sex">Sex</label>
+            <select name="sex" required="required">
+                <option></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="age">Age</label>
+            <input type="text" name="age" value="{{age}}">
+        </div>
+
+        <div>
+            <label for="weight">Weight</label>
+            <input type="text" name="weight" value="{{weight}}">
+
+        </div>
+
+        <div>
+            <label for="height">Height</label>
+            <input type="text" name="height" value="{{height}}">
+        </div>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <button><a href="/profile">Go back</a></button>
+
+</div>

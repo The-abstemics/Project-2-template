@@ -1,4 +1,4 @@
-<h2>Your profile, drunkard!</h2>
+<h2> Wellcome back {{username}}, It's booooze time! </h2>
 
 <button><a href="/auth/logout">Logout</a></button>
 
@@ -21,3 +21,9 @@
 <form action="/profile/reset-counter" method="POST">
     <button type="submir">RESET COUNTER</button>
 </form>
+
+<form action="/profile/{{_id}}/edit-profile" method="GET">
+    <button type="submit">Edit profile</button>
+</form>
+
+<button onclick="deleteUserConfirmation()">Delete profile</button>
