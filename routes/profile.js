@@ -18,6 +18,8 @@ router.route("/")
   });
 });
 
+///-----EDIT PROFILE-----//
+
 router.route("/:id/edit-profile")
 .get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
@@ -32,6 +34,8 @@ router.route("/:id/edit-profile")
   User.findByIdAndUpdate(id,  { age, weight, height, sex }, {new: true})
   .then(res.redirect("/profile"))
 });
+
+//------ADD-DRINK------//
 
 router.route("/add-drink")
   .get((req, res) => {
@@ -56,12 +60,20 @@ router.route("/add-drink")
         const gender = user.sex;
         let r = 0;
         gender === "male" ? (r = 0.55) : (r = 0.68);
-        let bac = total/weight*r;
+        let bac = (total/weight*r).toFixed(2);
         console.log(bac)
       
         User.findByIdAndUpdate(id, { $set: { bac: bac } }, { new: true }).then(() => res.redirect("/profile"))
       });
     });
   });
+
+  //-----RESET-COUNTER-----//
+  router.route('/reset-counter')
+  .post((req,res)=>{
+    User.findByIdAndUpdate(req.session.userId,{bac:0},{new:true})
+    .then((user)=>res.render('profile/user-profile',user))
+  })
+
 
 module.exports = router;
