@@ -25,17 +25,10 @@ router.route("/:id/edit-profile")
   })
 })
 .post((req, res) => {
-  const { age, weight, height, sex, image} = req.body;
+  const { age, weight, height, sex } = req.body;
   const id = req.session.userId;
-  console.log("dudeee",req.session.userId)
-  /*
-  if (password.length < 8) {
-    return res.status(400).render("auth/signup", {
-      errorMessage: "Your password needs to be at least 8 characters long.",
-    });
-  }*/
 
-  User.findByIdAndUpdate(id,  { age, weight, height, sex, image }, {new: true})
+  User.findByIdAndUpdate(id,  { age, weight, height, sex }, {new: true})
   .then(res.redirect("/profile"))
 
 });
