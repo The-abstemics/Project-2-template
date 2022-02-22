@@ -9,10 +9,28 @@ const Drink = require("../models/Drink.model");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.route("/").get(isLoggedIn, (req, res) => {
-  User.findById(req.session.userId).then((profile) => {
+
+router.route("/")
+.get(isLoggedIn, (req, res) => {
+  User.findById(req.session.userId)
+  .then((profile) => {
     res.render("profile/user-profile", profile);
   });
+});
+
+router.route("/:id/edit-profile")
+.get(isLoggedIn, (req, res) => {
+  User.findById(req.session.userId)
+  .then((user) => {
+    res.render("profile/edit-profile", user)
+  })
+})
+.post((req, res) => {
+  const { age, weight, height, sex } = req.body;
+  const id = req.session.userId;
+
+  User.findByIdAndUpdate(id,  { age, weight, height, sex }, {new: true})
+  .then(res.redirect("/profile"))
 });
 
 router.route("/add-drink")
