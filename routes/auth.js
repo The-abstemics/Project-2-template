@@ -10,7 +10,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 
 router.route("/signup")
-.get((req,res)=>{
+.get(isNotLoggedIn, (req,res)=>{
     res.render("auth/signup")
 })
 .post((req, res)=> {
