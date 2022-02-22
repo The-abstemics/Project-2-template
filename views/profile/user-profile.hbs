@@ -22,6 +22,8 @@
     <button type="submir">RESET COUNTER</button>
 </form>
 
-<form action="/profile/{{_id}}/edit-profile">
+<form action="/profile/{{_id}}/edit-profile" method="GET">
     <button type="submit">Edit profile</button>
 </form>
+
+<button onclick="deleteUserConfirmation()">Delete profile</button>

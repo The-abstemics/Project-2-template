@@ -18,6 +18,13 @@ router.route("/")
   });
 });
 
+router.get("/delete-profile", isLoggedIn, (req, res) => {
+  User.findByIdAndDelete(req.session.userId)
+  .then(res.redirect("/"))
+  .catch((err)  => `Something went wrong when deleting the profile: ${err}`);
+  }
+);
+
 ///-----EDIT PROFILE-----//
 
 router.route("/:id/edit-profile")
