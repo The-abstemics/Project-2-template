@@ -27,7 +27,7 @@ router
   })
   .post((req, res) => {
     //console.log(req.body.quantity[3])
-  
+
     let total = 0;
 
     Drink.find().then((drinks) => {
@@ -40,12 +40,26 @@ router
       });
       /*console.log('total:::::::::::::',alcohol_content,total)*/
       const id = req.session.userId;
-      User.findByIdAndUpdate(
-        id,
-        { $set: { bac: total } },
-        { new: true }
-      ).then((modifiedUser) => res.redirect("/"));
+      User.findByIdAndUpdate(id, { $set: { bac: total } }, { new: true }).then(
+        (modifiedUser) => res.redirect("/")
+      );
     });
   });
+
+router.get("/add-drink/search", (req, res) => {
+  const drinkName = req.query.drinkName;
+  console.log("DRINKNAME!!!!!", drinkName)
+  if (!drinkName) {
+      res.render("profile/add-drink", 
+      {errorMessage: "You need to type something droogie"})
+      
+  } else {
+    Drink.find({ name: {$regex: `^.*${drinkName}.*$`} })
+      .then((drinks) => {
+          res.render("profile/add-drink", {drinks})
+          })
+  }
+
+});
 
 module.exports = router;

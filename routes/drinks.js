@@ -66,10 +66,11 @@ router
 .post('/:id/like', (req, res, next) =>{
     const id = req.params.id;
     Drink.findByIdAndUpdate(id,{$inc: {likes:1}} , {new: true})
-        .then(()=>{
-            res.redirect('/')
+        .then((newBeer)=>{
+            console.log(">>>>>>>>>>>>>>", newBeer.likes)
+            res.send(newBeer.likes.toString())
         })
-        .catch(() => res.code(401).send(`Something went wrong`))
+        .catch(() => res.status(401).send(`Something went wrong`))
 })
 
 //------DISLIKES-------//
@@ -78,10 +79,10 @@ router
 .post('/:id/dislike', (req, res, next) =>{
     const id = req.params.id;
     Drink.findByIdAndUpdate(id,{$inc: {likes:-1}} , {new: true})
-        .then(()=>{
-            res.redirect('/')
+        .then((newBeer)=>{
+            res.send(newBeer.likes.toString());
         })
-        .catch(() => res.code(401).send(`Something went wrong`))
+        .catch(() => res.status(401).send(`Something went wrong`))
 })
 
 //------DISPLAY-------//

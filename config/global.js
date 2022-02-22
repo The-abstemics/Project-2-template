@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 
 var logger = require('morgan');
 
@@ -16,6 +17,8 @@ const hbs = require('hbs')
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
+
+  app.use(cors())
   app.use(logger("dev"));
 
   // To have access to `body` property in the request
