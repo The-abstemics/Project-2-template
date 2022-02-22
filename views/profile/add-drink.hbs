@@ -1,10 +1,12 @@
 <h2>ADD YOUR DRINKS</h2>
 
+
 <a href="/profile">Go back</a>
 
-<form class="search-form" action="/profile/add-drink" method="GET">
+<form class="search-form" action="/profile/add-drink/search" method="GET">
+
     <label for="search-bar"></label>
-    <input type="text" id="search-bar" placeholder="Search your poison">
+    <input type="text" id="drinkName" class="bar" placeholder="Search your poison" name="drinkName">
     <button class="search-btn"type="submit">Search</button>
 </form>
 
@@ -24,4 +26,9 @@
     <hr>
 {{/each}}
 <button type="submit" >Add</button>
+
+ {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+{{/if}}
+
  </form>
