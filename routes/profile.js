@@ -15,7 +15,7 @@ router.route("/")
 .get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
   .then((profile) => {
-    console.log("THIIIIIIIIS", profile.image[1])
+    console.log("THIIIIIIIIS", profile.image[0])
     res.render("profile/user-profile", profile);
   });
 });
@@ -75,7 +75,21 @@ router.route("/add-drink")
         console.log('stringaaaa:',(req.session.cookie._expires.toString()).slice(11,18))
         gender === "male" ? (r = 0.55) : (r = 0.68);
         bac = Number((Number(total.toFixed(2))/(weight*r)).toFixed(2))+user.bac;
-        User.findByIdAndUpdate(id, { $set: { bac: bac } }, { new: true }).then(() => res.redirect("/profile"))
+        
+          if(bac<0.5){
+           
+            User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/start.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
+            
+          } else if (bac>0.5 && bac<0.8){
+            User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/drink.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
+            
+          } else {
+            User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/wasted.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
+            
+          }
+          console.log("BAAAAC e IMAGEEEEN", bac, user.image)
+        
+        //User.findByIdAndUpdate(id, { $set: { bac: bac , image} }, { new: true }).then(() => res.redirect("/profile"))
       });
     });
   });
@@ -83,7 +97,7 @@ router.route("/add-drink")
   //-----RESET-COUNTER-----//
   router.route('/reset-counter')
   .post((req,res)=>{
-    User.findByIdAndUpdate(req.session.userId,{bac:0},{new:true})
+    User.findByIdAndUpdate(req.session.userId,{bac:0, image: "/images/start.jpg"},{new:true})
     .then((user)=>res.render('profile/user-profile',user))
   })
 

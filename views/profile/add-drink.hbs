@@ -10,7 +10,7 @@
     <button class="search-btn"type="submit">Search</button>
 </form>
 
-<form action="/profile/add-drink/" method="POST">
+<form action="/profile/add-drink" method="POST">
 <button type="submit" >Add</button>
 {{#each drinks}}
     <div>
@@ -21,7 +21,7 @@
         <h4>Likes: {{likes}}</h4>
         <img src="{{image}}" alt="imagen-birra" width="80px">
         
-            <input type="number" min="0" placeholder="Quantity" value="0" name="quantity">
+        <input type="number" min="0" placeholder="Quantity" value="0" name="quantity">
     </div>
     <hr>
 {{/each}}
