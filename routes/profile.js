@@ -71,9 +71,8 @@ router.route("/add-drink")
 
         total += (alcohol_content / 100) * (quantity * volumen) * alcoholDensity;
       });
-      const id = req.session.userId;
-
-      User.findById(id).then((user) => {
+      
+      User.findById(req.session.userId).then((user) => {
         const weight = user.weight;
         const gender = user.sex;
         const userStartDrink=user.startDrinking;

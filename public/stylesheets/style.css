@@ -483,4 +483,9 @@ article p {
 .no-background {
   background-color: transparent;
   border: none;
+
+.perfil-bola{
+border-radius: 50%;
+border: 2px solid #E3BAB3;
+
 }
