@@ -23,7 +23,7 @@ router.route("/").get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
     .populate("favorite_drinks")
     .then((user) => {
-    res.render("profile/user-profile", {
+      res.render("profile/user-profile", {
       user,
       profileImg: getProfileImg(user.bac),
     });
