@@ -8,12 +8,14 @@ const Drink = require("../models/Drink.model");
 
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const session = require("express-session");
 
 
 router.route("/")
 .get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
   .then((profile) => {
+    //console.log("THIIIIIIIIS", profile.image[1])
     res.render("profile/user-profile", profile);
   });
 });
@@ -75,11 +77,22 @@ router.route("/add-drink")
       User.findById(id).then((user) => {
         const weight = user.weight;
         const gender = user.sex;
+        const userStartDrink=user.startDrinking;
         let r = 0;
+        let bac = 0;
+        let date=new Date;
+        const timeNow=date.getTime();
+        const timeDrinking=timeNow-userStartDrink;
+
+        console.log(timeNow);
+        console.log(userStartDrink)
+        console.log('timeDrinking:',timeDrinking)
+
         gender === "male" ? (r = 0.55) : (r = 0.68);
-        let bac = (total/weight*r).toFixed(2);
-        console.log(bac)
-      
+        console.log(Number(total.toFixed(2)))
+        bac = (Number(total.toFixed(2))/(weight*r))+user.bac;
+        bac-=Number((timeDrinking/3600000)*0.015.toFixed(2))
+        bac=Number(bac.toFixed(2))
         User.findByIdAndUpdate(id, { $set: { bac: bac } }, { new: true }).then(() => res.redirect("/profile"))
       });
     });
@@ -96,9 +109,10 @@ router.route("/add-drink")
 
 //-------Search------
 
+
 router.get("/add-drink/search", (req, res) => {
   const drinkName = req.query.drinkName;
-  console.log("DRINKNAME!!!!!", drinkName)
+  //console.log("DRINKNAME!!!!!", drinkName)
   if (!drinkName) {
       res.render("profile/add-drink", 
       {errorMessage: "You need to type something droogie"})
