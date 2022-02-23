@@ -1,33 +1,36 @@
-<h2> Wellcome back {{username}}, It's booooze time! </h2>
+<div class="margin">
+
+    <h2> Hi there {{username}}</h2>
+    <p>Do you know how drunk you are?</p>
 
 
 
-<img src="{{image.[0]}}" alt="profile pic">
+    <img src="{{image.[0]}}" alt="profile pic">
 
 
 
 
-<div class="counter-center">
+    <div class="counter-center">
 
-    <div class="counter-box">
+        <div class="counter-box">
 
-        <p class="counter">{{bac}}%</p>
+            <p class="counter">{{bac}}%</p>
+
+        </div>
+
+    </div>
+
+    <div class="profile-btns">
+
+        <form action="/profile/add-drink" method="GET">
+            <button type="submit" class="button_plus"></button>
+        </form>
+
+
+        <form action="/profile/reset-counter" method="POST">
+            <button type="submit" class="reset">Finish Night</button>
+        </form>
 
     </div>
 
 </div>
-
-<div class="profile-btns">
-
-    <form action="/profile/add-drink" method="GET">
-        <button type="submit" class="button_plus"></button>
-    </form>
-
-
-    <form action="/profile/reset-counter" method="POST">
-        <button type="submit" class="reset">Finish Night</button>
-    </form>
-
-</div>
-
-

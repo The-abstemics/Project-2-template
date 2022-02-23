@@ -1,31 +1,41 @@
-<div class="title">
-    <h2>Add your drink</h2>
+<div class="margin">
+
+    <h2>CREATE YOUR DRINK</h2>
+
+    <div>
+
+        <form action="/drinks/create-drink" method="post" enctype="multipart/form-data">
+
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name">
+        </div>
+
+        <div>
+            <label for="description">Description</label>
+            <input type="text" name="description">
+        </div>
+
+        <div>
+            <label for="origin">Origin</label>
+            <input type="text" name="origin" >
+        </div>
+
+        <div>
+            <label for="alcohol_content"> % Alcohol</label>
+            <input type="text" name="alcohol_content">
+        </div>
+        
+        <div>
+            <label for="image">Upload Picture</label>
+            <input type="file" name="image">
+        </div>  
+
+        <button type="submit">CREATE</button>
+
+        </form>
+
+    </div>      
+
 </div>
-<div class="flex">
-    <form action="/drinks/create-drink" method="post" enctype="multipart/form-data">
-    <div>
-        <label for="name">Name</label>
-        <input type="text" name="name">
-    </div>
-    <div>
-        <label for="description">Description</label>
-        <input type="text" name="description">
-    </div>
-    <div>
-        <label for="origin">Origin</label>
-        <input type="text" name="origin" >
-    </div>
-    <div>
-        <label for="alcohol_content"> % Alcohol</label>
-        <input type="text" name="alcohol_content">
-    </div>
-    <div>
-        <label for="image">Upload Picture</label>
-        <input type="file" name="image">
-    </div>  
-    <div class="btn-center">
-        <button type="submit">ADD BOOZE</button>
-    </div>
-      
-    </form>
-</div>      
+

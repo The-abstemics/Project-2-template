@@ -79,11 +79,13 @@ router.route("/add-drink")
         const userStartDrink=user.startDrinking;
         let r = 0;
         let bac = 0;
-        //Si total === 0 que no cambie el timedrinking
         let date=new Date;
         const timeNow=date.getTime();
-        const timeDrinking=timeNow-userStartDrink;
-
+        //Si total === 0 que no cambie el timedrinking
+        let timeDrinking=timeNow-userStartDrink;
+        
+        if(total===0) timeDrinking=0;
+        
         console.log(timeNow);
         console.log(userStartDrink)
         console.log('timeDrinking:',timeDrinking)
@@ -91,7 +93,6 @@ router.route("/add-drink")
         gender === "male" ? (r = 0.6) : (r = 0.7);
 
         bac = (total/(weight*r))+(user.bac-(timeDrinking/3600000)*0.015);
-        console.log('total',total,'user.bac',user.bac,'time-drinking:',(timeDrinking/3600000)*0.015)
         bac = Number(bac.toFixed(2))
         
        

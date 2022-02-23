@@ -28,7 +28,7 @@
         <ul id="menu">
           <li>
             <input id="check01" type="checkbox" name="menu"/>
-            <label for="check01"> 
+            <label for="check01" class="menu-label"> 
               <svg class="ham hamRotate ham7 touch" viewBox="0 -10 100 100" width="60" onclick="this.classList.toggle('active')">
                 <path class="line top" d="m 70,33 h -40 c 0,0 -6,1.368796 -6,8.5 0,7.131204 6,8.5013 6,8.5013 l 20,-0.0013" />
                 <path class="line middle" d="m 70,50 h -40" />
@@ -37,9 +37,10 @@
             </label>
             <ul class="submenu">
               <li><a href="/drinks">Check drinks</a></li>
+              <li><a href="/profile/">Profile</a></li>
               <li><a href="/auth/signup">Signup</a></li>
               <li><a href="/auth/login">Login</a></li>
-              <li><a href="/auth/logout">Logout</a></li>
+              <li><a href="/auth/logout" class="logout">Logout</a></li>
             </ul>
           </li> 
         </ul>
