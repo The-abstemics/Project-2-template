@@ -1,4 +1,5 @@
 var express = require('express');
+const app= express();
 var cors = require('cors');
 
 var logger = require('morgan');
@@ -31,7 +32,7 @@ module.exports = (app) => {
   // Sets the view engine to handlebars
   app.set("view engine", "hbs");
 
-  hbs.registerPartials(path.join(__dirname, '/views/partials'))
+  hbs.registerPartials(path.join(__dirname, '../views/partials'))
 
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));

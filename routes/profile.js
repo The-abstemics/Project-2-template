@@ -15,7 +15,6 @@ router.route("/")
 .get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
   .then((profile) => {
-    //console.log("THIIIIIIIIS", profile.image[1])
     res.render("profile/user-profile", profile);
   });
 });
@@ -70,7 +69,7 @@ router.route("/add-drink")
         const quantity = req.body.quantity[idx];
         const alcoholDensity = 0.8;
 
-        total += ((alcohol_content / 100) * (quantity * volumen) * alcoholDensity)
+        total += (alcohol_content / 100) * (quantity * volumen) * alcoholDensity;
       });
       const id = req.session.userId;
 
@@ -80,6 +79,7 @@ router.route("/add-drink")
         const userStartDrink=user.startDrinking;
         let r = 0;
         let bac = 0;
+        //Si total === 0 que no cambie el timedrinking
         let date=new Date;
         const timeNow=date.getTime();
         const timeDrinking=timeNow-userStartDrink;
@@ -88,20 +88,32 @@ router.route("/add-drink")
         console.log(userStartDrink)
         console.log('timeDrinking:',timeDrinking)
 
-        gender === "male" ? (r = 0.55) : (r = 0.68);
-        console.log(Number(total.toFixed(2)))
-        bac = (Number(total.toFixed(2))/(weight*r))+user.bac;
-        bac-=Number((timeDrinking/3600000)*0.015.toFixed(2))
-        bac=Number(bac.toFixed(2))
-        User.findByIdAndUpdate(id, { $set: { bac: bac } }, { new: true }).then(() => res.redirect("/profile"))
+        gender === "male" ? (r = 0.6) : (r = 0.7);
+
+        bac = (total/(weight*r))+(user.bac-(timeDrinking/3600000)*0.015);
+        console.log('total',total,'user.bac',user.bac,'time-drinking:',(timeDrinking/3600000)*0.015)
+        bac = Number(bac.toFixed(2))
+        
+       
+       if(bac<0.5){   
+          User.findByIdAndUpdate(id, { $set: { bac: bac, image: "/images/start.jpg"} }, { new: true }).then(() => res.redirect("/profile"))   
+        } else if (bac>0.5 && bac<0.8){
+          User.findByIdAndUpdate(id, { $set: { bac: bac, image: "/images/drink.jpg"} }, { new: true }).then(() => res.redirect("/profile"))   
+        } else {
+        User.findByIdAndUpdate(id, { $set: {bac: bac, image: "/images/wasted.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
+        }
+
       });
     });
   });
 
-  //-----RESET-COUNTER-----//
-  router.route('/reset-counter')
+
+
+
+//-----RESET-COUNTER-----//
+router.route('/reset-counter')
   .post((req,res)=>{
-    User.findByIdAndUpdate(req.session.userId,{bac:0},{new:true})
+    User.findByIdAndUpdate(req.session.userId,{bac:0, image: "/images/start.jpg"},{new:true})
     .then((user)=>res.render('profile/user-profile',user))
   })
 
@@ -110,21 +122,20 @@ router.route("/add-drink")
 //-------Search------
 
 
-router.get("/add-drink/search", (req, res) => {
+router.get("/search", (req, res) => {
   const drinkName = req.query.drinkName;
   //console.log("DRINKNAME!!!!!", drinkName)
   if (!drinkName) {
-      res.render("profile/add-drink", 
+      res.render("partials/drinkpartial", 
       {errorMessage: "You need to type something droogie"})
       
   } else {
     Drink.find({ name: {$regex: `^.*${drinkName}.*$`} })
       .then((drinks) => {
-          res.render("profile/add-drink", {drinks})
+          res.render("partials/drinkpartial", {drinks})
           })
   }
 
 });
-
 
 module.exports = router;
