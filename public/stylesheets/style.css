@@ -1,7 +1,8 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:rgb(124, 25, 25);
+  background-color:#1c6f90;
   margin: 0;
+  
 }
 
 a {
@@ -275,10 +276,12 @@ li input:checked ~ ul.submenu{
   margin-left:1.5rem;
   background-color: rgba(165, 74, 74, 0.377);
   border-radius: 7.5px;
+  color:#eee
 }
 .flex label{
   margin-left: 0.8rem;
-  color: white;
+  color: #d9d9d9;
+  opacity:1 ;
 }
 .flex select{
   margin-left: 1.5rem;
@@ -286,9 +289,17 @@ li input:checked ~ ul.submenu{
 .flex p{
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+  color: whitesmoke;
+  font-family: 'Alata', sans-serif;
+  letter-spacing: 3px;
+  text-align: center;
 }
 .title{
   text-align: center;
+  color: #d9d9d9;
+  opacity:0.5 ;
+  text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em rgb(201, 201, 219);
+   color: white;
 }
 .btn-center{
   display: flex;
