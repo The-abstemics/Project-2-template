@@ -74,11 +74,16 @@ router
             .populate("favorite_drinks")
             .then((user) => {
                 let fav = user.favorite_drinks;
-                if(!fav.includes(newBeer)){
-                    console.log()
+                let flag = false;
+                fav.forEach((favDrink) => {
+                    if(favDrink.name === newBeer.name) {
+                        flag = true;
+                    }
+                })
+                if(flag === false){
                     fav.push(newBeer)
                     user.save()
-                .then(() => res.send(newBeer.likes.toString()))
+                    .then(() => res.send(newBeer.likes.toString()))
                 }
             })   
         })
