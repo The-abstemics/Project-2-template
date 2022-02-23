@@ -1,14 +1,14 @@
 <div class="margin">
 
-    <h2> Hi there, {{username}}</h2>
+    <h2> Hi there, {{user.username}}</h2>
     <p>Do you know how drunk you are?</p>
 
 
 
-    <img class="perfil-bola" src="{{image.[0]}}" alt="profile pic">
+    <img class="perfil-bola" src="{{profileImg}}" alt="profile pic">
 
     <div>
-        <a href="/profile/{{_id}}/edit-profile">Edit your profile</a>
+        <a href="/profile/{{user._id}}/edit-profile">Edit your profile</a>
 
     </div>
 
@@ -16,7 +16,7 @@
 
         <div class="counter-box">
             
-            <p class="counter">{{bac}}%</p>
+            <p class="counter">{{user.bac}}%</p>
 
         </div>
 
