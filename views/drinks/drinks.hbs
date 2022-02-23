@@ -1,43 +1,66 @@
-<h2>DRINKS LIST</h2>
+<div class="margin">
 
-{{#each drinks}}
+    <h2>DRINKS LIST</h2>
 
-    <div>
-        {{!-- <img src={{image_url}} alt=""> --}}
-        <h3>Name: {{capitalize name}}</h3>
-        <p>Description: {{description}}</p>
-        <h4>Origin: {{origin}}</h4>
-        <h4>Alcohol Content: {{alcohol_content}}%</h4>
-        <h4>Likes: <span id="likeCounter-{{_id}}">{{likes}}</span></h4>
-        <img src="{{image}}" alt="birra" width="80" height="80">
+    {{#each drinks}}
 
-        <img  src="/images/like.png" width="30" height="30" id="like-{{_id}}" hidden />
-        <img src="/images/nolike.png" width="30" height="30" id="nolike-{{_id}}" />
-    </div>
+        <div class="drink-list">
+
+            <div>
+
+                <img src="{{image}}" alt="birra" class="drink-avatar">
+
+                <img src="/images/like.png" width="30" height="30" class="heart" id="like-{{_id}}" hidden />
+                <img src="/images/nolike.png" width="30" height="30" class="heart" id="nolike-{{_id}}" />
+
+                <form id={{_id}} onsubmit="toggleLike(event)"> 
+
+                    <button type="submit" id="likeBtn-{{_id}}">Like</button>
+
+                </form>
+
+            </div>
+
+            <div>
+
+                <h3>{{capitalize name}}</h3>
+                <p>{{description}}</p>
+                <h4>Origin:</h4> <p>{{origin}}</p>
+                <h4>Alcohol Content:</h4> <p>{{alcohol_content}}%</p>
+                <h4>Likes:</h4> <span id="likeCounter-{{_id}}"><p>{{likes}}</p></span>
+                <br>
+
+            </div>
+            {{!-- {{#if loggedIn}} --}}
+            <div>
+
+                
+                
+
+            {{#if isOwner}}
+                <form action="/drinks/{{_id}}/edit-drink" method="GET"></form>
+                    <button><a href="/drinks/{{_id}}/edit-drink">Edit This Drink</a></button>
+                </form>
+
+                <form action="/drinks/{{_id}}/delete" method="POST"> 
+                    <button type="submit" >Delete</button>
+                </form>
+            {{/if}}
+
+            </div>
+
+        </div>
+        {{!-- {{/if}} --}}
+    <hr />
+
+    {{/each}}
+
+
     {{!-- {{#if loggedIn}} --}}
-    <div>
-        <form id={{_id}} onsubmit="toggleLike(event)"> 
-            <button type="submit" id="likeBtn-{{_id}}">Like</button>
-        </form>
-        
-
-    {{#if isOwner}}
-        <form action="/drinks/{{_id}}/edit-drink" method="GET"></form>
-            <button><a href="/drinks/{{_id}}/edit-drink">Edit This Drink</a></button>
-        </form>
-
-        <form action="/drinks/{{_id}}/delete" method="POST"> 
-            <button type="submit" >Delete</button>
-        </form>
-    {{/if}}
-
-    </div>
+    
+      <button><a href="/drinks/create-drink">Add Your Drink</a></button>
+      <button><a href="/auth/logout">Logout</a></button>
+    
     {{!-- {{/if}} --}}
-<hr />
 
-{{/each}}
-
-{{!-- {{#if loggedIn}} --}}
-<button><a href="/drinks/create-drink">Add Your Drink</a></button>
-<button><a href="/auth/logout">Logout</a></button>
-{{!-- {{/if}} --}}
+</div>
