@@ -1,5 +1,7 @@
-<h2>CREATE YOUR DRINK</h2>
-<div>
+<div class="title">
+    <h2>Add your drink</h2>
+</div>
+<div class="flex">
     <form action="/drinks/create-drink" method="post" enctype="multipart/form-data">
     <div>
         <label for="name">Name</label>
@@ -21,6 +23,9 @@
         <label for="image">Upload Picture</label>
         <input type="file" name="image">
     </div>  
-      <button type="submit">CREATE</button>
+    <div class="btn-center">
+        <button type="submit">ADD BOOZE</button>
+    </div>
+      
     </form>
 </div>      

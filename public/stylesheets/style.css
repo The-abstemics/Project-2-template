@@ -1,6 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:#1c6f90;
+  background-color:#ffffff5b;
   margin: 0;
   
 }
@@ -259,28 +259,26 @@ li input:checked ~ ul.submenu{
   font-family: 'Libre Baskerville', serif;
   font-size: 50px;
   color: #095776;
-
+} 
 /******** SIGN UP FORM **********/
 .flex{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-right: 1rem;
 }
-.flex input:focus{
-  border-color: none;
 
-}
 .flex input{
   width: 20rem;
   margin-left:1.5rem;
-  background-color: rgba(165, 74, 74, 0.377);
+  background-color: white;
   border-radius: 7.5px;
-  color:#eee
+  color:#053547
 }
 .flex label{
   margin-left: 0.8rem;
-  color: #d9d9d9;
+  color: #1f3a92;
   opacity:1 ;
 }
 .flex select{
@@ -289,7 +287,7 @@ li input:checked ~ ul.submenu{
 .flex p{
   margin-left: 1.5rem;
   margin-right: 1.5rem;
-  color: whitesmoke;
+  color:#000;
   font-family: 'Alata', sans-serif;
   letter-spacing: 3px;
   text-align: center;
@@ -298,7 +296,7 @@ li input:checked ~ ul.submenu{
   text-align: center;
   color: #d9d9d9;
   opacity:0.5 ;
-  text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em rgb(201, 201, 219);
+  text-shadow: 1px 1px 2px black, 0 0 1em #053547, 0 0 0.2em rgb(201, 201, 219);
    color: white;
 }
 .btn-center{

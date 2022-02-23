@@ -1,6 +1,9 @@
-<h2>Log In</h2>
+<div class="title">
+   <h2>Log In</h2>
+</div>
 
-<div>
+
+<div class="flex">
    <form action="/auth/login" method="POST">
       <label for="username">Username</label>
       <input type="text" name="username">
@@ -8,7 +11,10 @@
       <label for="password">Password</label>
       <input type="password" name="password">
 
-      <button type="submit">Log In</button>
+      <div class="btn-center">
+         <button type="submit">Log In</button>
+      </div>
+      
 
       {{#if errorMessage}}
          <p class="error">{{errorMessage}}</p>
