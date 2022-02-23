@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:rgb(124, 25, 25);
   margin: 0;
 }
 
@@ -143,4 +144,41 @@ li input:checked ~ ul.submenu{
 }
 .ham7.active .bottom {
   stroke-dashoffset: -83px;
+}
+
+/******** SIGN UP FORM **********/
+.flex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.flex input:focus{
+  border-color: none;
+
+}
+.flex input{
+  width: 20rem;
+  margin-left:1.5rem;
+  background-color: rgba(165, 74, 74, 0.377);
+  border-radius: 7.5px;
+}
+.flex label{
+  margin-left: 0.8rem;
+  color: white;
+}
+.flex select{
+  margin-left: 1.5rem;
+}
+.flex p{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+.title{
+  text-align: center;
+}
+.btn-center{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
