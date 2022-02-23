@@ -33,6 +33,9 @@ module.exports = (app) => {
   app.set("view engine", "hbs");
 
   hbs.registerPartials(path.join(__dirname, '../views/partials'))
+  hbs.registerHelper('capitalize',function(name){
+      return name[0].toUpperCase()+name.slice(1);
+  })
 
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));

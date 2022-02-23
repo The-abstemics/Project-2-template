@@ -123,7 +123,7 @@ router.route('/reset-counter')
 
 
 router.get("/search", (req, res) => {
-  const drinkName = req.query.drinkName;
+  const drinkName = req.query.drinkName.toLowerCase();
   //console.log("DRINKNAME!!!!!", drinkName)
   if (!drinkName) {
       res.render("partials/drinkpartial", 
