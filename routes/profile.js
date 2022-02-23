@@ -62,7 +62,7 @@ router.route("/add-drink")
         const quantity = req.body.quantity[idx];
         const alcoholDensity = 0.8;
 
-        total += ((alcohol_content / 100) * (quantity * volumen) * alcoholDensity)
+        total += (alcohol_content / 100) * (quantity * volumen) * alcoholDensity;
       });
       const id = req.session.userId;
 
@@ -72,6 +72,7 @@ router.route("/add-drink")
         const userStartDrink=user.startDrinking;
         let r = 0;
         let bac = 0;
+        //Si total === 0 que no cambie el timedrinking
         let date=new Date;
         const timeNow=date.getTime();
         const timeDrinking=timeNow-userStartDrink;
@@ -80,11 +81,12 @@ router.route("/add-drink")
         console.log(userStartDrink)
         console.log('timeDrinking:',timeDrinking)
 
-        gender === "male" ? (r = 0.55) : (r = 0.68);
-        console.log(Number(total.toFixed(2)))
-        bac = (Number(total.toFixed(2))/(weight*r))+user.bac;
-        bac-=Number((timeDrinking/3600000)*0.015.toFixed(2))
-        bac=Number(bac.toFixed(2))
+        gender === "male" ? (r = 0.6) : (r = 0.7);
+
+        bac = (total/(weight*r))+(user.bac-(timeDrinking/3600000)*0.015);
+        console.log('total',total,'user.bac',user.bac,'time-drinking:',(timeDrinking/3600000)*0.015)
+        bac = Number(bac.toFixed(2))
+
         User.findByIdAndUpdate(id, { $set: { bac: bac } }, { new: true }).then(() => res.redirect("/profile"))
       });
     });
