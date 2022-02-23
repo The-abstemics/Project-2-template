@@ -11,7 +11,7 @@ const { Axios } = require('axios');
 
 //-----CREATE-------//
 router.route('/create-drink')
-.get((req,res)=>{
+.get(isLoggedIn, (req,res)=>{
     res.render('drinks/create-drink')
 })
 .post(fileUploader.single("image"), (req,res)=>{
@@ -34,7 +34,7 @@ router.route('/create-drink')
 //------EDIT-------//
 
 router.route('/:id/edit-drink')
-.get((req,res)=>{
+.get(isLoggedIn, (req,res)=>{
     const id = req.params.id;
     Drink.findById(id)
     .then((drink)=>res.render('drinks/edit-drink',drink))
@@ -54,7 +54,7 @@ router.route('/:id/edit-drink')
 //------DELETE-------//
 
 router
-  .post('/:id/delete', (req, res, next) => {
+  .post('/:id/delete', isLoggedIn, (req, res, next) => {
       const id = req.params.id;
       Drink.findByIdAndDelete(id)
         .then(() => res.redirect("/drinks"))

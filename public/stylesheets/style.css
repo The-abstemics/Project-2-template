@@ -40,6 +40,10 @@ p {
   width : 100%;
   background-color: #095776;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.527);
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  border: 2px solid #095776;
 }
 
 nav a {
@@ -466,3 +470,17 @@ article p {
   color: #095776;
 }
 
+.owner-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.edit-drink-btn {
+  height: 20px;
+  width: 20px;
+}
+
+.no-background {
+  background-color: transparent;
+  border: none;
+}
