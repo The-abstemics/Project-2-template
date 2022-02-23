@@ -405,7 +405,6 @@ article {
 
 .drink-list{
   display: flex;
-  flex-direction: column;
 }
 
 .hr {
