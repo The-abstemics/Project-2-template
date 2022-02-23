@@ -1,49 +1,61 @@
-<div class="title">
-    <h2>Sign up</h2>
-</div>
-<div class="flex">
-    <form action="/auth/signup" method="POST" id="signup">
+<div class="margin">
 
-        <p>Attention! Username & password are definitive and can't be changed later!</p>
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username">
-        </div>
+    <div class="title">
 
-
-        <div>
-            <label for="sex">Sex</label>
-            <select name="sex" id="" required="required">   
-                <option></option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
-
-        <div>
-            <label for="age">Age</label>
-            <input type="text" name="age">
-        </div>
-
-        <div>
-            <label for="weight">Weight</label>
-            <input type="text" name="weight" placeholder="Kg">
-
-        </div>
-
-        <div>
-            <label for="height">Height</label>
-            <input type="text" name="height">
-        </div>
-
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="At least 8 characters">
-        </div>
-        <div class="btn-center">
-            <button type="submit">Create</button>
-        </div>
+        <h2>Sign up</h2>
         
-    </form>
+    </div>
+
+    <div class="flex">
+
+        <form action="/auth/signup" method="POST" id="signup">
+
+            <p>Attention! Username & password are definitive and can't be changed later!</p>
+
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username">
+            </div>
+
+            <div>
+                <label for="sex">Sex</label>
+                <br>
+                <select name="sex" id="" required="required">   
+                    <option></option>
+                    <option value="male" class="not-blue">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="age">Age</label>
+                <input type="text" name="age">
+            </div>
+
+            <div>
+                <label for="weight">Weight</label>
+                <input type="text" name="weight" placeholder="Kg">
+
+            </div>
+
+            <div>
+                <label for="height">Height</label>
+                <input type="text" name="height">
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="At least 8 characters">
+            </div>
+
+            <div class="index-btns top-margin">
+                
+                <button type="submit" class="btn btn-text"><p>Create</p></button>
+
+            </div>
+            
+        </form>
+
+    </div>
 
 </div>

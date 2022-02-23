@@ -1,12 +1,25 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:#1c6f90;
   margin: 0;
-  
+  background-color: #36384C;
 }
 
 a {
+  text-decoration: none;
   color: #00B7FF;
+}
+
+.margin {
+  margin: 30px;
+}
+
+h2{
+  color: #E3BAB3;
+}
+
+p {
+  color: #849974;
+  font-weight: bolder;
 }
 
 /*----- NAVIGATION BAR -----*/
@@ -31,17 +44,13 @@ nav a {
 
 /*----- DROPDOWN MENU -----*/
 
-li a {
-  text-decoration : none; 
-  color : #2d2f31;}
-
 ul#menu{
   position: relative;
   width:100%;
   height:3em;
   margin:0;
   padding:0;
-  background:transparent;
+  background: transparent;
   color:#eee;
 }
 
@@ -51,7 +60,7 @@ ul#menu > li{
   position:relative;
 }
 
-label{
+.menu-label {
   position:relative;
   display:block;
   padding:0 18px 0 12px;
@@ -60,7 +69,7 @@ label{
   cursor:pointer;
 }
 
-label:after{
+.menu-label:after {
   position:absolute;
   display:block;
   top:50%;
@@ -79,12 +88,18 @@ ul.submenu{
   position:absolute;
   min-width:100%;
   z-index: 1;
-  background-color: white;
+  background-color: #2c2e3f;
 }
+
+.logout li a {
+  color: #613A43;
+}
+
 ul.submenu li a{
   display:block;
   padding:12px;
-  color: black;
+  color: #849974;
+  font-weight: bold;
   text-decoration:none;
   box-shadow:0 -1px rgba(0,0,0,.5) inset;
   transition:background .3s;
@@ -94,6 +109,8 @@ ul.submenu li a{
 ul.submenu li a:hover{
   background:rgba(0,0,0,.3);
 }
+
+
 
 /*----- hide the inputs -----*/
 li input{
@@ -157,7 +174,74 @@ li input:checked ~ ul.submenu{
 }
 
 
+/*----- INDEX -----*/
+
+.no-show {
+  display: none;
+}
+
+.index-btns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.description {
+  text-align: justify;
+}
+
+.btn {
+  width: 80px;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #095776;
+  font-size: 20px;
+}
+
+.btn:hover {
+  background-color: #095776;
+  transition: 1.5s;
+}
+
+.btn a {
+  color: #095776;
+}
+
+.btn a:hover {
+  color: #fff;
+  transition: 1.5s;
+}
+
+.btn-large {
+  width: 200px;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #095776;
+  font-size: 20px;
+}
+
+.btn-large:hover {
+  background-color: #095776;
+  transition: 1.5s;
+}
+
+.btn-large a {
+  color: #095776;
+}
+
+.btn-large a:hover {
+  color: #fff;
+  transition: 1.5s;
+}
+
+article {
+  margin: 80px 0;
+}
+
+
+/*----- USER PROFILE -----*/
+
 /*----- PROFILE BUTTONS -----*/
+
 .profile-btns {
   display: flex;
   justify-content: space-around;
@@ -246,6 +330,7 @@ li input:checked ~ ul.submenu{
 
 .counter-box {
   border: #095776 2px solid;
+  background-color: #fff;
   width: 200px;
   height: 100px;
   margin: 50px 0;
@@ -259,51 +344,57 @@ li input:checked ~ ul.submenu{
   font-family: 'Libre Baskerville', serif;
   font-size: 50px;
   color: #095776;
+}
 
-/******** SIGN UP FORM **********/
+/*----- SIGN UP  -----*/
+
 .flex{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .flex input:focus{
   border-color: none;
-
 }
+
 .flex input{
-  width: 20rem;
-  margin-left:1.5rem;
-  background-color: rgba(165, 74, 74, 0.377);
-  border-radius: 7.5px;
+  width: 97.5%;
   color:#eee
 }
+
 .flex label{
-  margin-left: 0.8rem;
-  color: #d9d9d9;
-  opacity:1 ;
+  color: #E3BAB3;
+  font-weight: bold;
+  line-height:3em;
 }
-.flex select{
-  margin-left: 1.5rem;
+
+.flex option {
+  font-size: 10px;
 }
-.flex p{
+
+.flex p {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
-  color: whitesmoke;
-  font-family: 'Alata', sans-serif;
-  letter-spacing: 3px;
   text-align: center;
 }
+
 .title{
   text-align: center;
-  color: #d9d9d9;
-  opacity:0.5 ;
-  text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em rgb(201, 201, 219);
-   color: white;
 }
-.btn-center{
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
 
+.btn p {
+  color: #095776;
+  margin: 0;
+}
+
+.btn p:hover {
+  color: #fff;
+  transition: 1.5s;
+  margin: 0;
+}
+
+.top-margin {
+  margin-top: 20px;
 }

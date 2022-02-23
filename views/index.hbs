@@ -1,24 +1,33 @@
-
-<h1>Baco</h1>
-
-
-{{#if loggedIn}}
+<div class="margin">
+    
+    <h1 class="no-show">Baco</h1>
 
 
-<button><a href="/auth/logout">Logout</a></button>
+        <div class="index-btns">
 
-{{else}}
+            <button class="btn"><a href="/auth/signup">Signup</a></button>
+            <button class="btn"><a href="/auth/login">Login</a></button>
 
-    <button><a href="/profile">Start drinking</a></button>
-    <button><a href="/auth/signup">Signup</a></button>
-    <button><a href="/auth/login">Login</a></button>
-    <article>
-    <p>
-        DESCRIPTION
-        &
-        HOW TO USE
-    </p>
-</article>
-{{/if}}
+        </div>
 
-<button><a href="/drinks">Check all the drinks</a></button>
+        <article class="description">
+            <p>
+                With Baco you can calculate your Body Alcohol Content in real time thanks to our large database of different alcoholic drinks and your body specifics.
+            </p>
+
+            <p>
+                Besides this, you can add your own drinks to the database so everyone can drink it and save them as favorites. 
+            </p>
+
+            <p>
+                If you don't want to create an account, you can check the list of drinks for your pleasure!
+            </p>
+        </article>
+
+    <div class="index-btns">
+
+        <button class="btn-large"><a href="/drinks">Check all the drinks</a></button>
+
+    </div>
+
+</div>
