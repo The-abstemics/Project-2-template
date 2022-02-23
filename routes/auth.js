@@ -16,7 +16,6 @@ router.route("/signup")
 })
 .post((req, res)=> {
     const { username, sex, weight, height, age, password } = req.body;
-    console.log({ username, sex, weight, height, age, password })
 
     if (!username || !password || !sex || !weight || !height || ! age ) {
         return res
@@ -38,7 +37,6 @@ router.route("/signup")
     User.findOne({ username }).then((found) => {
         // If the user is found, send the message username is taken
         if (found) {
-          console.log("THIS!!!!!!!!", found, found.age)
           return res
             .status(400)
             .render("auth/signup", { errorMessageUser: "Username already taken." })    
@@ -59,12 +57,17 @@ router.route("/signup")
               password: hashedPassword
             
             });
+            
           })
-          .then((user) => {
-            // Bind the user to the session object
+          .then((user)=> {
             req.session.userId = user._id;
-            res.redirect("/profile");
-          })})
+            let date = new Date;
+            const date1= date.getTime();
+             User.findByIdAndUpdate(user._id.toString(),{startDrinking:date1 },{new:true})
+             .then((updatedUser)=>{
+               res.redirect("/profile")
+            })
+        })})
 })
 
 ///////////////////////////// LOGIN //////////////////////////////////
@@ -83,7 +86,6 @@ router.route('/login')
 
   User.findOne({ username })
   .then((user)=> {
-    //console.log(user)
     if(!user){
       return res
         .status(400)
@@ -100,7 +102,6 @@ router.route('/login')
       req.session.userId = user._id;
       })
       .then(()=> {
-        console.log(user._id.toString())
         let date = new Date;
         const date1= date.getTime();
          User.findByIdAndUpdate(user._id.toString(),{startDrinking:date1 },{new:true})
