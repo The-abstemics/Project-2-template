@@ -34,11 +34,6 @@ const userSchema = new Schema({
 			type:Number,
 			default:0
 			},
-	image: { 	
-		type: [],
-		default: "/images/start.jpg"
-		},
-		
 	favorite_drinks: [],
 
 	startDrinking:{	
