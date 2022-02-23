@@ -223,6 +223,40 @@ li input:checked ~ ul.submenu{
   transition: 1.5s;
 }
 
+.btn-nav {
+  width: 60px;
+  height: 25px;
+  background-color: #fff;
+  border: 2px solid #095776;
+  font-size: 13px;
+}
+
+.btn-nav:hover {
+  background-color: #095776;
+  transition: 1.5s;
+}
+
+.btn-nav a {
+  color: #095776;
+}
+
+.btn-nav a:hover {
+  color: #fff;
+  transition: 1.5s;
+}
+
+.btn-nav p {
+  color: #095776;
+  text-align: center;
+  margin: 0;
+}
+
+.btn-nav p:hover {
+  color: #fff;
+  transition: 1.5s;
+  margin: 0;
+}
+
 .btn a {
   color: #095776;
 }
@@ -264,6 +298,19 @@ article p {
 
 
 /*----- USER PROFILE -----*/
+
+.profile-top {
+  display: flex;
+  gap: 10px;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
 
 /*----- PROFILE BUTTONS -----*/
 
@@ -494,3 +541,9 @@ border: 2px solid #E3BAB3;
   text-align: center;
   margin-top: 30px;
 }
+
+.favDrinks {
+  font-size: 18px;
+  text-align: left;
+}
+

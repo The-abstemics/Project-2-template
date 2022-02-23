@@ -14,7 +14,9 @@ const session = require("express-session");
 router.route("/")
 .get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
+  .populate("favorite_drinks")
   .then((profile) => {
+    
     res.render("profile/user-profile", profile);
   });
 });

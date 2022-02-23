@@ -70,8 +70,18 @@ router
     const id = req.params.id;
     Drink.findByIdAndUpdate(id,{$inc: {likes:1}} , {new: true})
         .then((newBeer)=>{
-            console.log(">>>>>>>>>>>>>>", newBeer.likes)
-            res.send(newBeer.likes.toString())
+            User.findById(req.session.userId)
+            .populate("favorite_drinks")
+            .then((user) => {
+                let fav = user.favorite_drinks;
+                
+                if(!fav.includes(newBeer.name)){
+                    console.log("JU: ", newBeer.name)
+                    fav.push(newBeer)
+                    user.save()
+                .then(() => res.send(newBeer.likes.toString()))
+                }
+            })   
         })
         .catch(() => res.status(401).send(`Something went wrong`))
 })
@@ -83,6 +93,7 @@ router
     const id = req.params.id;
     Drink.findByIdAndUpdate(id,{$inc: {likes:-1}} , {new: true})
         .then((newBeer)=>{
+            
             res.send(newBeer.likes.toString());
         })
         .catch(() => res.status(401).send(`Something went wrong`))

@@ -1,18 +1,29 @@
 <div class="margin">
 
-    <h2> Hi there, {{username}}</h2>
-    <p>Do you know how drunk you are?</p>
+    <div class="profile-top">
+
+        <div>
+            <h2> Hi there, {{username}}</h2>
+            <p>Do you know how drunk you are?</p>
+        </div>
+
+        <div class="profile-top margin-top">
+
+            <div>
+                <img src="../../images/icons/edit2.png" alt="Edit drink" class="edit-drink-btn">
+            </div>
+
+            <div>
+                <a href="/profile/{{_id}}/edit-profile">Edit profile</a>
+            </div>
+
+        </div>
+
+    </div>
 
     <div class="title">
 
         <img class="perfil-bola" src="{{image.[0]}}" alt="profile pic">
-
-    </div>
-
-    <div>
-
-        <br>
-        <a href="/profile/{{_id}}/edit-profile"><img src="../../images/icons/edit2.png" alt="Edit drink" class="edit-drink-btn"> Edit your profile</a>
 
     </div>
 
@@ -47,8 +58,10 @@
 
         <div>
 
-            {{#each profile.favorite_drinks}}
-                <p>{{name}}</p>
+            <hr>
+            {{#each favorite_drinks}}
+                <p class="favDrinks">{{capitalize name}} {{alcohol_content}}%</p>
+                <hr>
             {{/each}}
 
         </div>
