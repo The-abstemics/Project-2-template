@@ -425,3 +425,7 @@ article {
   left: 30px;
   z-index: 1;
 }
+.perfil-bola{
+border-radius: 50%;
+border: 2px solid #E3BAB3;
+}
