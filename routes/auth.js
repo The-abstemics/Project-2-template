@@ -8,6 +8,7 @@ const User = require("../models/User.model")
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+///////////////////////////// SIGNUP //////////////////////////////////
 
 router.route("/signup")
 .get(isNotLoggedIn, (req,res)=>{
@@ -22,7 +23,13 @@ router.route("/signup")
           .status(400)
           .render("auth/signup", { errorMessage: "Please fill up all the details." });
       }
-    
+      
+      if (age < 18) {
+        return res
+          .status(400)
+          .render("auth/signup", { errorMessageAge: "You got to be at least 18 years old" })
+      }
+      
       if (password.length < 8) {
         return res.status(400).render("auth/signup", {
           errorMessage: "Your password needs to be at least 8 characters long.",
@@ -31,19 +38,11 @@ router.route("/signup")
     User.findOne({ username }).then((found) => {
         // If the user is found, send the message username is taken
         if (found) {
-          /*
-          const signup = document.getElementById('signup');
-          const message = document.createElement('p').innerText = "The username is already taken";
-          signup.appendChild(message)
-          */
-
+          console.log("THIS!!!!!!!!", found, found.age)
           return res
-          
             .status(400)
-            .render("auth/signup", console.log({ errorMessage: "Username already taken." }) )
-            ;
+            .render("auth/signup", { errorMessageUser: "Username already taken." })    
         }
-    
         // if user is not found, create a new user - start with hashing the password
         return bcrypt
           .genSalt(saltRounds)
@@ -68,7 +67,8 @@ router.route("/signup")
           })})
 })
 
-//LOGIN
+///////////////////////////// LOGIN //////////////////////////////////
+
 router.route('/login')
 .get(isNotLoggedIn, (req,res)=>{
   res.render('auth/login')
@@ -110,6 +110,8 @@ router.route('/login')
     })
   })
 });
+
+///////////////////////////// LOGOUT //////////////////////////////////
 
 router.get("/logout", isLoggedIn, (req, res) => {
   User.findByIdAndUpdate(req.session.userId,{bac:0},{new:true})

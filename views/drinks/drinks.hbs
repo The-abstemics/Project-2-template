@@ -23,7 +23,7 @@
 
             <div>
 
-                <h3>{{name}}</h3>
+                <h3>{{capitalize name}}</h3>
                 <p>{{description}}</p>
                 <h4>Origin:</h4> <p>{{origin}}</p>
                 <h4>Alcohol Content:</h4> <p>{{alcohol_content}}%</p>
@@ -55,9 +55,12 @@
 
     {{/each}}
 
+
     {{!-- {{#if loggedIn}} --}}
-    <button><a href="/drinks/create-drink">Add Your Drink</a></button>
-    <button><a href="/auth/logout">Logout</a></button>
+    
+      <button><a href="/drinks/create-drink">Add Your Drink</a></button>
+      <button><a href="/auth/logout">Logout</a></button>
+    
     {{!-- {{/if}} --}}
 
 </div>

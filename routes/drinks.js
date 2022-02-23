@@ -17,6 +17,7 @@ router.route('/create-drink')
 .post(fileUploader.single("image"), (req,res)=>{
     const {name,description,origin,alcohol_content}=req.body;
     const owner = req.session.userId;
+    let name1=name.toLowerCase();
     let image = ''
     if (req.file){
         console.log(req.file)
@@ -24,7 +25,7 @@ router.route('/create-drink')
     } else {
     image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Birra_Moretti_Logo_2015.jpeg/640px-Birra_Moretti_Logo_2015.jpeg'
     }
-    Drink.create({name,description,origin,alcohol_content,image,owner})
+    Drink.create({name:name1,description,origin,alcohol_content,image,owner})
     .then(res.redirect('/drinks'))
     .catch((error)=>console.log('The create drink didnt work becasue: ',error))
 })
