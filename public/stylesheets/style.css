@@ -18,6 +18,10 @@ h2, h3, h4, h5{
   color: #E3BAB3;
 }
 
+h3 {
+  margin: 0;
+}
+
 p {
   color: #849974;
   font-weight: bolder;
@@ -36,6 +40,10 @@ p {
   width : 100%;
   background-color: #095776;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.527);
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  border: 2px solid #095776;
 }
 
 nav a {
@@ -93,8 +101,16 @@ ul.submenu{
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.527);
 }
 
-.logout li a {
-  color: #613A43;
+.logout {
+  background-color: #75172d;
+}
+
+.logout:hover {
+  background-color: #531825;
+}
+
+ .logout a {
+  color: #fff;
 }
 
 ul.submenu li a{
@@ -188,6 +204,9 @@ li input:checked ~ ul.submenu{
 }
 
 .description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: justify;
 }
 
@@ -237,6 +256,10 @@ li input:checked ~ ul.submenu{
 
 article {
   margin: 80px 0;
+}
+
+article p {
+  color: #E3BAB3;
 }
 
 
@@ -363,7 +386,7 @@ article {
 
 .flex input{
   width: 97.5%;
-  color:#eee
+  color: #000;
 }
 
 .flex label{
@@ -401,12 +424,27 @@ article {
   margin-top: 20px;
 }
 
+.delete-btn {
+  margin-top: 50px;
+  background-color: #F26968;
+  color: #fff;
+  border: 2px solid #fc4747;
+  width: auto;
+  height: 40px;
+  font-size: 20px;
+}
+
 
 /*----- DRINK LIST -----*/
 
 .drink-list{
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+}
+
+.drink-list h3 {
+  color: #e29a8c;
+  font-size: 25px;
 }
 
 .hr {
@@ -425,6 +463,28 @@ article {
   left: 30px;
   z-index: 1;
 }
+
+.like-btn {
+  border: 2px solid #095776;
+  background-color: #fff;
+  color: #095776;
+}
+
+.owner-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.edit-drink-btn {
+  height: 20px;
+  width: 20px;
+}
+
+.no-background {
+  background-color: transparent;
+  border: none;
+}
+
 .perfil-bola{
 border-radius: 50%;
 border: 2px solid #E3BAB3;

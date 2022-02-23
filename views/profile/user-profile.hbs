@@ -1,19 +1,21 @@
 <div class="margin">
 
-    <h2> Hi there {{username}}</h2>
+    <h2> Hi there, {{username}}</h2>
     <p>Do you know how drunk you are?</p>
 
 
 
     <img class="perfil-bola" src="{{image.[0]}}" alt="profile pic">
 
+    <div>
+        <a href="/profile/{{_id}}/edit-profile">Edit your profile</a>
 
-
+    </div>
 
     <div class="counter-center">
 
         <div class="counter-box">
-
+            
             <p class="counter">{{bac}}%</p>
 
         </div>
@@ -23,12 +25,14 @@
     <div class="profile-btns">
 
         <form action="/profile/add-drink" method="GET">
+            
             <button type="submit" class="button_plus"></button>
+            
         </form>
 
 
         <form action="/profile/reset-counter" method="POST">
-            <button type="submit" class="reset">Finish Night</button>
+            <button type="submit" class="reset"> Stop drinking</button>
         </form>
 
     </div>
