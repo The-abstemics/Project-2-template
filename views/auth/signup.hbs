@@ -8,8 +8,11 @@
         <div>
             <label for="username">Username</label>
             <input type="text" name="username">
-        </div>
+        </div>  
 
+        {{#if errorMessageUser}}
+            <p class="error">{{errorMessageUser}}</p>
+        {{/if}}
 
         <div>
             <label for="sex">Sex</label>
@@ -24,6 +27,10 @@
             <label for="age">Age</label>
             <input type="text" name="age">
         </div>
+
+        {{#if errorMessageAge}}
+            <p class="error">{{errorMessageAge}}</p>
+        {{/if}}
 
         <div>
             <label for="weight">Weight</label>
