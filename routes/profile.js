@@ -76,26 +76,23 @@ router.route("/add-drink")
         gender === "male" ? (r = 0.55) : (r = 0.68);
         bac = Number((Number(total.toFixed(2))/(weight*r)).toFixed(2))+user.bac;
         
-          if(bac<0.5){
-           
-            User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/start.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
-            
-          } else if (bac>0.5 && bac<0.8){
-            User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/drink.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
-            
-          } else {
-            User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/wasted.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
-            
-          }
-          console.log("BAAAAC e IMAGEEEEN", bac, user.image)
+        if(bac<0.5){   
+        User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/start.jpg"} }, { new: true }).then(() => res.redirect("/profile"))    
+        } else if (bac>0.5 && bac<0.8){
+        User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/drink.jpg"} }, { new: true }).then(() => res.redirect("/profile"))    
+        } else {
+        User.findByIdAndUpdate(id, { $set: { bac: bac , image: "/images/wasted.jpg"} }, { new: true }).then(() => res.redirect("/profile"))  
+        }
         
-        //User.findByIdAndUpdate(id, { $set: { bac: bac , image} }, { new: true }).then(() => res.redirect("/profile"))
       });
     });
   });
 
-  //-----RESET-COUNTER-----//
-  router.route('/reset-counter')
+
+
+
+//-----RESET-COUNTER-----//
+router.route('/reset-counter')
   .post((req,res)=>{
     User.findByIdAndUpdate(req.session.userId,{bac:0, image: "/images/start.jpg"},{new:true})
     .then((user)=>res.render('profile/user-profile',user))
@@ -106,21 +103,20 @@ router.route("/add-drink")
 //-------Search------
 
 
-router.get("/add-drink/search", (req, res) => {
+router.get("/search", (req, res) => {
   const drinkName = req.query.drinkName;
   console.log("DRINKNAME!!!!!", drinkName)
   if (!drinkName) {
-      res.render("profile/add-drink", 
+      res.render("partials/drinkpartial", 
       {errorMessage: "You need to type something droogie"})
       
   } else {
     Drink.find({ name: {$regex: `^.*${drinkName}.*$`} })
       .then((drinks) => {
-          res.render("profile/add-drink", {drinks})
+          res.render("partials/drinkpartial", {drinks})
           })
   }
 
 });
-
 
 module.exports = router;
