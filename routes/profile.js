@@ -10,6 +10,7 @@ const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const session = require("express-session");
 
+
 function getProfileImg(bac) {
   let imgUrl = "";
   if (bac < 0.5) imgUrl = "/images/start.jpg";
@@ -19,8 +20,9 @@ function getProfileImg(bac) {
 }
 
 router.route("/").get(isLoggedIn, (req, res) => {
-  User.findById(req.session.userId).then((user) => {
-    console.log(">>>>>>>>>>>>>>>>>", getProfileImg(user.bac))
+  User.findById(req.session.userId)
+    .populate("favorite_drinks")
+    .then((user) => {
     res.render("profile/user-profile", {
       user,
       profileImg: getProfileImg(user.bac),

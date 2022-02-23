@@ -1,22 +1,39 @@
-<form action="/profile/add-drink" method="POST">
-<button type="submit" >Add</button>
-{{#each drinks}}
-    <div id="{{name}}">
-        <h3>Name: {{capitalize name}}</h3>
-        <p>Description: {{capitalize description}}</p>
-        <h4>Origin: {{capitalize origin}}</h4>
-        <h4>Alcohol Content: {{alcohol_content}}%</h4>
-        <h4>Likes: {{likes}}</h4>
-        <img src="{{image}}" alt="imagen-birra" width="80px">
-        
-        <input type="number" min="0" placeholder="Quantity" value="0" name="quantity">
-    </div>
-    <hr>
-{{/each}}
-<button type="submit" >Add</button>
 
-{{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-{{/if}}
+<form action="/profile/add-drink" method="POST">
+
+    <button type="submit" class="btn-nav margin-top margin-bottom"><p>Add</p></button>
+
+    {{#each drinks}}
+        <div id="{{name}}">
+
+            <div class="drink-list">
+
+            <div>
+
+                <img src="{{image}}" alt="drink avatar" class="drink-avatar">
+
+            </div>
+
+            <div>
+
+                <h3>{{capitalize name}}</h3>
+                <h4>Origin:</h4> <p>{{capitalize origin}}</p>
+                <h4>Alcohol Content:</h4> <p>{{alcohol_content}}%</p>
+                <h4>Likes:</h4> <p><span id="likeCounter-{{_id}}">{{likes}}</span></p>
+                <input type="number" min="0" placeholder="Quantity" value="0" name="quantity">
+                <br>
+
+            </div>
+
+        </div>
+
+        <hr>
+    {{/each}}
+
+    <button type="submit" class="btn-nav margin-top"><p>Add</p></button>
+
+    {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+    {{/if}}
 
  </form>

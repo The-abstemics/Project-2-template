@@ -1,14 +1,31 @@
 <div class="margin">
 
-    <h2> Hi there, {{user.username}}</h2>
-    <p>Do you know how drunk you are?</p>
+
+    <div class="profile-top">
+
+        <div>
+            <h2> Hi there, {{username}}</h2>
+            <p>Do you know how drunk you are?</p>
+        </div>
+
+        <div class="profile-top margin-top">
+
+            <div>
+                <img src="../../images/icons/edit2.png" alt="Edit drink" class="edit-drink-btn">
+            </div>
+
+            <div>
+                <a href="/profile/{{_id}}/edit-profile">Edit profile</a>
+            </div>
+
+        </div>
+
+    </div>
 
 
+    <div class="title">
 
-    <img class="perfil-bola" src="{{profileImg}}" alt="profile pic">
-
-    <div>
-        <a href="/profile/{{user._id}}/edit-profile">Edit your profile</a>
+        <img class="perfil-bola" src="{{image.[0]}}" alt="profile pic">
 
     </div>
 
@@ -34,6 +51,22 @@
         <form action="/profile/reset-counter" method="POST">
             <button type="submit" class="reset"> Stop drinking</button>
         </form>
+
+    </div>
+
+    <div class="fav-drinks">
+
+        <h2>Your favorite drinks</h2>
+
+        <div>
+
+            <hr>
+            {{#each favorite_drinks}}
+                <p class="favDrinks">{{capitalize name}} {{alcohol_content}}%</p>
+                <hr>
+            {{/each}}
+
+        </div>
 
     </div>
 
