@@ -489,3 +489,8 @@ article p {
 border-radius: 50%;
 border: 2px solid #E3BAB3;
 }
+
+.fav-drinks {
+  text-align: center;
+  margin-top: 30px;
+}
