@@ -10,7 +10,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 
 router.route("/signup")
-.get((req,res)=>{
+.get(isNotLoggedIn, (req,res)=>{
     res.render("auth/signup")
 })
 .post((req, res)=> {
@@ -50,6 +50,7 @@ router.route("/signup")
           .then((salt) => bcrypt.hash(password, salt))
           .then((hashedPassword) => {
             // Create a user and save it in the database
+            
             return User.create({
               username,
               sex, 
@@ -57,6 +58,7 @@ router.route("/signup")
               height, 
               age,
               password: hashedPassword
+            
             });
           })
           .then((user) => {
@@ -98,7 +100,13 @@ router.route('/login')
       req.session.userId = user._id;
       })
       .then(()=> {
-        res.redirect("/profile")
+        console.log(user._id.toString())
+        let date = new Date;
+        const date1= date.getTime();
+         User.findByIdAndUpdate(user._id.toString(),{startDrinking:date1 },{new:true})
+         .then((updatedUser)=>{
+           res.redirect("/profile")
+        })
     })
   })
 });

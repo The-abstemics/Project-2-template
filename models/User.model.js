@@ -39,7 +39,12 @@ const userSchema = new Schema({
 		default: "/images/start.jpg"
 		},
 		
-	favorite_drinks: []
+	favorite_drinks: [],
+
+	startDrinking:{	
+		type:Number,
+		default:0
+	}
 
 });
 

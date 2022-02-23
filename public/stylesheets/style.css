@@ -1,9 +1,184 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:rgb(124, 25, 25);
+  margin: 0;
 }
 
 a {
   color: #00B7FF;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  height: 50px;
+  background-color: rgb(46, 46, 196);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.527);
+}
+
+li a {text-decoration : none; color : #2d2f31;}
+
+
+nav {
+  width : 100%; 
+  background: #d9d9d9;
+  margin : 40px auto; 
+}
+
+ul#menu{
+  position: relative;
+  width:100%;
+  height:3em;
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:#eee;
+}
+
+ul#menu > li{
+  float:left;
+  list-style-type:none;
+  position:relative;
+}
+
+label{
+  position:relative;
+  display:block;
+  padding:0 18px 0 12px;
+  line-height:3em;
+  transition:background 0.3s;
+  cursor:pointer;
+}
+
+label:after{
+  position:absolute;
+  display:block;
+  top:50%;
+  right:5px;
+  width:0;
+  height:0;
+  transition:border-bottom .1s, border-top .1s .1s;
+  }
+
+ul.submenu{
+  max-height:0;
+  padding:0;
+  overflow:hidden;
+  list-style-type:none;
+  transition:max-height 0.5s ease-out;
+  position:absolute;
+  min-width:100%;
+  
+  background-color: white;
+}
+ul.submenu li a{
+  display:block;
+  padding:12px;
+  color: black;
+  text-decoration:none;
+  box-shadow:0 -1px rgba(0,0,0,.5) inset;
+  transition:background .3s;
+  white-space:nowrap;
+}
+
+ul.submenu li a:hover{
+  background:rgba(0,0,0,.3);
+}
+
+/*hide the inputs*/
+li input{display:none}
+li input:checked ~ ul.submenu{
+  max-height:300px;
+  transition:max-height 0.5s ease-in;
+}
+
+.nav p {
+  font-family: 'Teko', sans-serif;
+  font-size:  40px;
+  margin-left: 25px;
+}
+
+
+.ham {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.hamRotate.active {
+  transform: rotate(45deg);
+}
+.hamRotate180.active {
+  transform: rotate(180deg);
+}
+.line {
+  fill:none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke:#000;
+  stroke-width:5.5;
+  stroke-linecap:round;
+}
+
+.ham7 .top {
+  stroke-dasharray: 40 82;
+}
+.ham7 .middle {
+  stroke-dasharray: 40 111;
+}
+.ham7 .bottom {
+  stroke-dasharray: 40 161;
+}
+.ham7.active .top {
+  stroke-dasharray: 17 82;
+  stroke-dashoffset: -62px;
+}
+.ham7.active .middle {
+  stroke-dashoffset: 23px;
+}
+.ham7.active .bottom {
+  stroke-dashoffset: -83px;
+}
+
+/******** SIGN UP FORM **********/
+.flex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.flex input:focus{
+  border-color: none;
+
+}
+.flex input{
+  width: 20rem;
+  margin-left:1.5rem;
+  background-color: rgba(165, 74, 74, 0.377);
+  border-radius: 7.5px;
+}
+.flex label{
+  margin-left: 0.8rem;
+  color: white;
+}
+.flex select{
+  margin-left: 1.5rem;
+}
+.flex p{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+.title{
+  text-align: center;
+}
+.btn-center{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
