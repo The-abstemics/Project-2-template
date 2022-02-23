@@ -97,7 +97,7 @@ router.route("/add-drink")
        
        if(bac<0.5){   
           User.findByIdAndUpdate(id, { $set: { bac: bac, image: "/images/start.jpg"} }, { new: true }).then(() => res.redirect("/profile"))   
-        } else if (bac>0.5 && bac<0.8){
+        } else if (bac>=0.5 && bac<=0.8){
           User.findByIdAndUpdate(id, { $set: { bac: bac, image: "/images/drink.jpg"} }, { new: true }).then(() => res.redirect("/profile"))   
         } else {
         User.findByIdAndUpdate(id, { $set: {bac: bac, image: "/images/wasted.jpg"} }, { new: true }).then(() => res.redirect("/profile"))
