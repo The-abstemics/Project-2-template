@@ -4,7 +4,7 @@
     <div class="profile-top">
 
         <div>
-            <h2> Hi there, {{username}}</h2>
+            <h2> Hi there, {{capitalize user.username}}</h2>
             <p>Do you know how drunk you are?</p>
         </div>
 
@@ -15,7 +15,7 @@
             </div>
 
             <div>
-                <a href="/profile/{{_id}}/edit-profile">Edit profile</a>
+                <a href="/profile/{{user._id}}/edit-profile">Edit profile</a>
             </div>
 
         </div>
@@ -25,7 +25,7 @@
 
     <div class="title">
 
-        <img class="perfil-bola" src="{{image.[0]}}" alt="profile pic">
+        <img class="perfil-bola" src="{{profileImg}}" alt="profile pic">
 
     </div>
 
@@ -61,7 +61,7 @@
         <div>
 
             <hr>
-            {{#each favorite_drinks}}
+            {{#each user.favorite_drinks}}
                 <p class="favDrinks">{{capitalize name}} {{alcohol_content}}%</p>
                 <hr>
             {{/each}}
