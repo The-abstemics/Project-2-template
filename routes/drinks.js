@@ -24,7 +24,7 @@ router.route('/create-drink')
     } else {
     image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Birra_Moretti_Logo_2015.jpeg/640px-Birra_Moretti_Logo_2015.jpeg'
     }
-    Drink.create({name,description,origin,alcohol_content,image,owner:owner})
+    Drink.create({name,description,origin,alcohol_content,image,owner})
     .then(res.redirect('/drinks'))
     .catch((error)=>console.log('The create drink didnt work becasue: ',error))
 })
@@ -91,7 +91,9 @@ router.get('/',(req, res)=>{
     Drink.find()
     .populate("owner")
     .then((drinks)=>{
+        console.log(drinks)
         drinks.forEach((drink) => {
+           // console.log(drink)
             if (req.session && req.session.userId == drink.owner._id){
                 drink.isOwner = true;
             }

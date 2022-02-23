@@ -1,32 +1,33 @@
 <h2> Wellcome back {{username}}, It's booooze time! </h2>
 
-<button><a href="/auth/logout">Logout</a></button>
-
-<a href="/drinks">Check all the drinks</a>
-
-<img src="{{image}}" alt="profile pic">
-<p>Username: {{username}}</p>
-<p>Sex: {{sex}}</p>
-<p>Age: {{age}}</p>
-<p>Weight: {{weight}}</p>
-<p>Height: {{height}}</p>
 
 
-<hr>
+<img src="{{image.[0]}}" alt="profile pic">
 
-<p class="counter">{{bac}}%</p>
 
-<form action="/profile/add-drink" method="GET">
-    <button type="submit">ADD DRINKS</button>
-</form>
 
-<form action="/profile/reset-counter" method="POST">
-    <button type="submir">RESET COUNTER</button>
-</form>
 
-<form action="/profile/{{_id}}/edit-profile" method="GET">
-    <button type="submit">Edit profile</button>
-</form>
+<div class="counter-center">
 
-<button onclick="deleteUserConfirmation()">Delete profile</button>
+    <div class="counter-box">
+
+        <p class="counter">{{bac}}%</p>
+
+    </div>
+
+</div>
+
+<div class="profile-btns">
+
+    <form action="/profile/add-drink" method="GET">
+        <button type="submit" class="button_plus"></button>
+    </form>
+
+
+    <form action="/profile/reset-counter" method="POST">
+        <button type="submit" class="reset">Finish Night</button>
+    </form>
+
+</div>
+
 
