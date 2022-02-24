@@ -397,7 +397,9 @@ article p {
 
 .counter-center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .counter-box {
@@ -405,7 +407,7 @@ article p {
   background-color: #fff;
   width: 200px;
   height: 100px;
-  margin: 50px 0;
+  margin: 50px 0 10px 0;
   position: relative;
   display: flex;
   align-items: center;

@@ -23,8 +23,8 @@ router.route("/").get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
     .populate("favorite_drinks")
     .then((user) => {
-      res.render("profile/user-profile", {user, profileImg: getProfileImg(user.bac),
-    });
+      res.render("profile/user-profile", {user, profileImg: getProfileImg(user.bac)}
+      );
   });
 });
 
@@ -98,13 +98,9 @@ router
 
         if (total === 0) timeDrinking = 0;
 
-        console.log(timeNow);
-        console.log(userStartDrink);
-        console.log("timeDrinking:", timeDrinking);
-
         gender === "male" ? (r = 0.6) : (r = 0.7);
 
-        bac = total / (weight * r) + (user.bac - (timeDrinking / 3600000) * 0.015);
+        bac = (total / (weight * r) + (user.bac - (timeDrinking / 3600000) * 0.015)) / 2;
         bac = Number(bac.toFixed(2));
         user.bac = bac;
         user.save().then(() => {
