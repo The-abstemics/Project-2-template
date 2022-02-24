@@ -124,7 +124,7 @@ router.route("/reset-counter").post((req, res) => {
 
 //-------Search------
 
-router.get("/search", (req, res) => {
+/*router.get("/search", (req, res) => {
   const drinkName = req.query.drinkName.toLowerCase();
   //console.log("DRINKNAME!!!!!", drinkName)
   if (!drinkName) {
@@ -136,6 +136,6 @@ router.get("/search", (req, res) => {
       res.render("partials/drinkpartial", { drinks });
     });
   }
-});
+});*/
 
 module.exports = router;
