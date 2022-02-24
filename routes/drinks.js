@@ -121,9 +121,12 @@ router.get('/',(req, res)=>{
     .then((drinks)=>{
         console.log(drinks)
         drinks.forEach((drink) => {
-           // console.log(drink)
             if (req.session && req.session.userId == drink.owner._id){
                 drink.isOwner = true;
+            }
+
+            if (req.session.userId){
+                drink.loggedIn = true;
             }
         })
         res.render('drinks/drinks', {drinks})
