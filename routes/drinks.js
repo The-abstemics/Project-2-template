@@ -73,15 +73,15 @@ router
             User.findById(req.session.userId)
             .populate("favorite_drinks")
             .then((user) => {
-                let fav = user.favorite_drinks;
+                let favs = user.favorite_drinks;
                 let flag = false;
-                fav.forEach((favDrink) => {
+                favs.forEach((favDrink) => {
                     if(favDrink.name === newBeer.name) {
                         flag = true;
                     }
                 })
                 if(flag === false){
-                    fav.push(newBeer)
+                    favs.push(newBeer)
                     user.save()
                     .then(() => res.send(newBeer.likes.toString()))
                 }
@@ -97,8 +97,18 @@ router
     const id = req.params.id;
     Drink.findByIdAndUpdate(id,{$inc: {likes:-1}} , {new: true})
         .then((newBeer)=>{
-            
-            res.send(newBeer.likes.toString());
+            User.findById(req.session.userId)
+            .populate("favorite_drinks")
+            .then((user) => {
+                let favs = user.favorite_drinks;
+                favs.forEach((favDrink, index) => {
+                    if(favDrink.name === newBeer.name) {
+                        favs.splice(index, 1)
+                        user.save();
+                        res.send(newBeer.likes.toString());
+                    }
+                })
+            })
         })
         .catch(() => res.status(401).send(`Something went wrong`))
 })
