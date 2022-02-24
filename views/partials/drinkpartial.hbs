@@ -4,6 +4,7 @@
     <button type="submit" class="btn-nav margin-top margin-bottom"><p>Add</p></button>
 
     {{#each drinks}}
+    
         <div id="{{name}}">
 
             <div class="drink-list">
@@ -28,12 +29,15 @@
         </div>
 
         <hr>
+
     {{/each}}
 
     <button type="submit" class="btn-nav margin-top"><p>Add</p></button>
 
     {{#if errorMessage}}
+
         <p class="error">{{errorMessage}}</p>
+
     {{/if}}
 
  </form>
