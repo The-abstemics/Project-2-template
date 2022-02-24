@@ -1,35 +1,35 @@
 <div class="margin">
 
-   <div class="title">
+  <div class="title">
 
-      <h2>Log In</h2>
+    <h2>Log In</h2>
 
-      <div class="flex">
+    <div class="flex">
 
-         <form action="/auth/login" method="POST">
+      <form action="/auth/login" method="POST">
 
-            <label for="username">Username</label>
-            <input type="text" name="username">
+        <label for="username">Username</label>
+        <input type="text" name="username" />
 
-            <label for="password">Password</label>
-            <input type="password" name="password">
+        <label for="password">Password</label>
+        <input type="password" name="password" />
 
-            <div class="index-btns top-margin">
+        <div class="index-btns top-margin">
 
-               <button type="submit" class="btn btn-text"><p>Enter</p></button>
+          <button type="submit" class="btn btn-text"><p>Enter</p></button>
 
-            </div>
+        </div>
 
-         </form>
+      </form>
 
-      </div>
+    </div>
 
-   </div>
+  </div>
 
-      {{#if errorMessage}}
-      
-         <p class="error">{{errorMessage}}</p>
-         
-      {{/if}}
+  {{#if errorMessage}}
+
+    <p class="error">{{errorMessage}}</p>
+
+  {{/if}}
 
 </div>

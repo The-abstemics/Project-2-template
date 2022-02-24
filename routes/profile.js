@@ -10,7 +10,6 @@ const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const session = require("express-session");
 
-
 function getProfileImg(bac) {
   let imgUrl = "";
   if (bac < 0.5) imgUrl = "/images/start.jpg";
@@ -19,14 +18,8 @@ function getProfileImg(bac) {
   return imgUrl;
 }
 
-router.route("/").get(isLoggedIn, (req, res) => {
-  User.findById(req.session.userId)
-    .populate("favorite_drinks")
-    .then((user) => {
-      res.render("profile/user-profile", {user, profileImg: getProfileImg(user.bac)}
-      );
-  });
-});
+/*-----DELETE PROFILE-----*/
+
 
 router.get("/delete-profile", isLoggedIn, (req, res) => {
   User.findByIdAndDelete(req.session.userId)
@@ -43,7 +36,9 @@ router.get("/delete-profile", isLoggedIn, (req, res) => {
     .catch((err) => `Something went wrong when deleting the profile: ${err}`);
 });
 
+
 ///-----EDIT PROFILE-----//
+
 
 router
   .route("/:id/edit-profile")
@@ -56,14 +51,14 @@ router
     const { age, weight, sex } = req.body;
     const id = req.session.userId;
 
-    User.findByIdAndUpdate(
-      id,
-      { age, weight, sex },
-      { new: true }
-    ).then(res.redirect("/profile"));
+    User.findByIdAndUpdate(id, { age, weight, sex }, { new: true }).then(
+      res.redirect("/profile")
+    );
   });
 
+
 //------ADD-DRINK------//
+
 
 router
   .route("/add-drink")
@@ -80,7 +75,7 @@ router
         const volumen = drink.size;
         const quantity = req.body.quantity[idx];
         const alcoholDensity = 0.8;
-        console.log(quantity)
+        console.log(quantity);
         total +=
           (alcohol_content / 100) * (quantity * volumen) * alcoholDensity;
       });
@@ -94,48 +89,54 @@ router
         let date = new Date();
         let i = 1;
         const timeNow = date.getTime();
-        
+
         let timeDrinking = timeNow - userStartDrink;
 
-        if (total === 0) { 
-          timeDrinking = 0}
-          else {i = 2};
+        if (total === 0) {
+          timeDrinking = 0;
+        } else {
+          i = 2;
+        }
 
         gender === "male" ? (r = 0.6) : (r = 0.7);
 
-        bac = (total / (weight * r) + (user.bac - (timeDrinking / 3600000) * 0.015)) / i;
+        bac =
+          (total / (weight * r) +
+            (user.bac - (timeDrinking / 3600000) * 0.015)) /
+          i;
         bac = Number(bac.toFixed(2));
         user.bac = bac;
         user.save().then(() => {
-          
           res.redirect("/profile");
         });
       });
     });
   });
 
+
 //-----RESET-COUNTER-----//
+
+
 router.route("/reset-counter").post((req, res) => {
-  User.findByIdAndUpdate(
-    req.session.userId,
-    { bac: 0}
-  ).then(() => res.redirect("/profile"));
+  User.findByIdAndUpdate(req.session.userId, { bac: 0 }).then(() =>
+    res.redirect("/profile")
+  );
 });
 
-//-------Search------
 
-/*router.get("/search", (req, res) => {
-  const drinkName = req.query.drinkName.toLowerCase();
-  //console.log("DRINKNAME!!!!!", drinkName)
-  if (!drinkName) {
-    res.render("partials/drinkpartial", {
-      errorMessage: "You need to type something droogie",
+//-----PROFILE-----*/
+
+
+router.route("/").get(isLoggedIn, (req, res) => {
+  User.findById(req.session.userId)
+    .populate("favorite_drinks")
+    .then((user) => {
+      res.render("profile/user-profile", {
+        user,
+        profileImg: getProfileImg(user.bac),
+      });
     });
-  } else {
-    Drink.find({ name: { $regex: `^.*${drinkName}.*$` } }).then((drinks) => {
-      res.render("partials/drinkpartial", { drinks });
-    });
-  }
-});*/
+});
+
 
 module.exports = router;

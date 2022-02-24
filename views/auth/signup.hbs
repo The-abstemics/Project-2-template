@@ -1,68 +1,73 @@
 <div class="margin">
 
-    <div class="title">
+  <div class="title">
 
-        <h2>Sign up</h2>
-        
-    </div>
+    <h2>Sign up</h2>
 
-    <div class="flex">
+  </div>
 
-        <form action="/auth/signup" method="POST" id="signup">
+  <div class="flex">
 
-            <p>Attention! Username & password are definitive and can't be changed later!</p>
+    <form action="/auth/signup" method="POST" id="signup">
 
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username">
-            </div>
+      <p>Attention! Username & password are definitive and can't be changed
+        later!</p>
 
-            {{#if errorMessageUser}}
-      
-                <p class="error">{{errorMessageUser}}</p>
-         
-            {{/if}}   
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" />
+      </div>
 
-            <div>
-                <label for="sex">Sex</label>
-                <br>
-                <select name="sex" id="" required="required">   
-                    <option></option>
-                    <option value="male" class="not-blue">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div>
+      {{#if errorMessageUser}}
 
-            <div>
-                <label for="age">Age</label>
-                <input type="text" name="age">
-            </div>
+        <p class="error">{{errorMessageUser}}</p>
 
-            {{#if errorMessageAge}}
-      
-                <p class="error">{{errorMessageAge}}</p>
-         
-            {{/if}} 
+      {{/if}}
 
-            <div>
-                <label for="weight">Weight</label>
-                <input type="text" name="weight" placeholder="Kg">
+      <div>
+        <label for="sex">Sex</label>
+        <br />
+        <select name="sex" id="" required="required">
+          <option></option>
+          <option value="male" class="not-blue">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
 
-            </div>
+      <div>
+        <label for="age">Age</label>
+        <input type="text" name="age" />
+      </div>
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" placeholder="At least 8 characters">
-            </div>
+      {{#if errorMessageAge}}
 
-            <div class="index-btns top-margin">
-                
-                <button type="submit" class="btn btn-text"><p>Create</p></button>
+        <p class="error">{{errorMessageAge}}</p>
 
-            </div>
-            
-        </form>
+      {{/if}}
 
-    </div>
+      <div>
+        <label for="weight">Weight</label>
+        <input type="text" name="weight" placeholder="Kg" />
+
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="At least 8 characters"
+        />
+      </div>
+
+      <div class="index-btns top-margin">
+
+        <button type="submit" class="btn btn-text"><p>Create</p></button>
+
+      </div>
+
+    </form>
+
+  </div>
 
 </div>

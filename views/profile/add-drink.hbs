@@ -1,25 +1,30 @@
-<script>
-    function capuccino(event){
-   event.preventDefault();
-    const input = document.getElementById('drinkName').value
-           console.log('adadadad',input)
-}
-</script>
 <div class="margin">
 
-    <h2>ADD YOUR DRINKS</h2>
-
-    <div class="drink-list"></div>
-
+    <h2>SELECT YOUR DRINKS</h2>
+    
     <a href="/profile">Go back</a>
 
-    
-        <input type="text" id="drinkName" class="bar" placeholder="Search your poison" name="drinkName">
-        <a id="adress" href=""><button type="submit" onclick="capuccino(event)" class="btn-nav"><p>Search</p></button></a>
-    
-    
+    <div class="drink-list">
 
-    {{>drinkpartial}}
+        <div>
+
+            <input type="text" id="drinkName" class="bar" placeholder="Search your poison" name="drinkName">
+            <a id="adress" href=""><button type="submit" onclick="capuccino(event)" class="btn-nav"><p>Search</p></button></a> 
+
+            {{>drinkpartial}}
+
+        </div>
+
+    </div>
 
 </div>
 
+<script>
+
+    function capuccino(event){
+        event.preventDefault();
+        const input = document.getElementById('drinkName').value
+           console.log('adadadad',input)
+    }
+    
+</script>
