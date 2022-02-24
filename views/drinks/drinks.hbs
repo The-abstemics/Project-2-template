@@ -10,14 +10,18 @@
 
                 <img src="{{image}}" alt="drink avatar" class="drink-avatar">
 
-                    <img src="/images/like.png" width="30" height="30" class="heart" id="like-{{_id}}" hidden />
-                    <img src="/images/nolike.png" width="30" height="30" class="heart" id="nolike-{{_id}}" />
+                    {{#if loggedIn}}
 
-                <form id={{_id}} onsubmit="toggleLike(event)"> 
+                        <img src="/images/like.png" width="30" height="30" class="heart" id="like-{{_id}}" hidden />
+                        <img src="/images/nolike.png" width="30" height="30" class="heart" id="nolike-{{_id}}" />
 
-                    <button type="submit" id="likeBtn-{{_id}}" class="like-btn">Like</button>
+                        <form id={{_id}} onsubmit="toggleLike(event)"> 
 
-                </form>
+                            <button type="submit" id="likeBtn-{{_id}}" class="like-btn">Like</button>
+
+                        </form>
+
+                    {{/if}}
 
                 <div>   
 
