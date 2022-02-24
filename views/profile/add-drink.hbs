@@ -1,3 +1,10 @@
+<script>
+    function capuccino(event){
+   event.preventDefault();
+    const input = document.getElementById('drinkName').value
+           console.log('adadadad',input)
+}
+</script>
 <div class="margin">
 
     <h2>ADD YOUR DRINKS</h2>
@@ -6,14 +13,13 @@
 
     <a href="/profile">Go back</a>
 
-    <form class="search-form" action="/profile/search" method="GET">
-
-        <label for="search-bar"></label>
+    
         <input type="text" id="drinkName" class="bar" placeholder="Search your poison" name="drinkName">
-        <button class="btn-nav" type="submit"><p>Search</p></button>
-    </form>
+        <a id="adress" href=""><button type="submit" onclick="capuccino(event)" class="btn-nav"><p>Search</p></button></a>
+    
     
 
     {{>drinkpartial}}
 
 </div>
+
