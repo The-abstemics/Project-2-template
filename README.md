@@ -1,7 +1,7 @@
-Nameless(yet)
+BACØ
 
 ## Description
-- Nameless is an app to check your blood alcohol content (BAC).
+- BACØ is an app to check your blood alcohol content (BAC).
 
 ## User levels
 There are 2 types of users. The unregistered user, and the registered one. In addition the registered one can be owner of their added drinks.
@@ -52,11 +52,12 @@ User : { username: { type: String, required: true, unique: true },
 		 password: { type: String, required: true },
 		 age: { type: Number, required: true },
 		 sex: { type: String, required: true },
-		 height: { type: Number, required: true },
 		 weight: { type: Number, required: true },
 		 image: { type: [String], default: “defaultImageUrl” },
 		 alcohol-lvl: { type: Number },
-		 consumptions: [{ type: Schema.Types.ObjID, ref: “Drink” }]
+		 bac{ type:Number, default:0 }
+		 favorite_drinks: [], 
+		 startDrinking:{type:Number, default:0 }
 		}
 ```
 
@@ -67,7 +68,11 @@ Drink:	{ name: { type: String, required: true },
 		  alcohol-content: { type: Number, required: true },
 		  likes: { type: Number, default: 0 },
 		  size: { type: Number, required: true, default: 33 },
-		  image: {type: String, default: "defaultImageUrl"}
+		  image:{ type: String, default:'defaultImageUrl' },
+		  owner:{ type: Schema.Types.ObjectId, ref: "User"}
 		}
 ```
 	
+## Deploy
+
+[Deploy link](https://baco-drinking-app.herokuapp.com/)
