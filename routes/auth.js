@@ -127,4 +127,10 @@ router.get("/logout", isLoggedIn, (req, res) => {
   });
 });
 
+///////////////////////////// DISCLAIMER //////////////////////////////////
+
+router.get("/disclaimer", (req, res) => {
+  res.render("disclaimer");
+})
+
 module.exports = router;

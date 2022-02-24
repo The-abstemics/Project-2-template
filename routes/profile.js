@@ -104,7 +104,7 @@ router
         gender === "male" ? (r = 0.6) : (r = 0.7);
 
         bac = (total / (weight * r) + (user.bac - (timeDrinking / 3600000) * 0.015)) / i;
-        bac = Number(bac.toFixed(4));
+        bac = Number(bac.toFixed(2));
         user.bac = bac;
         user.save().then(() => {
           
