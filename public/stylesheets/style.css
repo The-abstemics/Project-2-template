@@ -462,6 +462,14 @@ article p {
   text-align: center;
 }
 
+.justify {
+  text-align: justify;
+}
+
+.pink {
+  color: #e29a8c;
+}
+
 .btn p {
   color: #095776;
   margin: 0;
