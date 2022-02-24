@@ -36,6 +36,11 @@ module.exports = (app) => {
   hbs.registerHelper('capitalize',function(name){
       return name[0].toUpperCase()+name.slice(1);
   })
+  hbs.registerHelper('math', function(bac) {
+    if (bac > 0.25) { 
+      return bac / 0.25}
+    else return 0;
+  })
 
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));

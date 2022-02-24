@@ -23,8 +23,8 @@ router.route("/").get(isLoggedIn, (req, res) => {
   User.findById(req.session.userId)
     .populate("favorite_drinks")
     .then((user) => {
-      res.render("profile/user-profile", {user, profileImg: getProfileImg(user.bac),
-    });
+      res.render("profile/user-profile", {user, profileImg: getProfileImg(user.bac)}
+      );
   });
 });
 
@@ -80,7 +80,7 @@ router
         const volumen = drink.size;
         const quantity = req.body.quantity[idx];
         const alcoholDensity = 0.8;
-
+        console.log(quantity)
         total +=
           (alcohol_content / 100) * (quantity * volumen) * alcoholDensity;
       });
@@ -92,22 +92,22 @@ router
         let r = 0;
         let bac = 0;
         let date = new Date();
+        let i = 1;
         const timeNow = date.getTime();
         //Si total === 0 que no cambie el timedrinking
         let timeDrinking = timeNow - userStartDrink;
 
-        if (total === 0) timeDrinking = 0;
-
-        console.log(timeNow);
-        console.log(userStartDrink);
-        console.log("timeDrinking:", timeDrinking);
+        if (total === 0) { 
+          timeDrinking = 0}
+          else {i = 2};
 
         gender === "male" ? (r = 0.6) : (r = 0.7);
 
-        bac = total / (weight * r) + (user.bac - (timeDrinking / 3600000) * 0.015);
-        bac = Number(bac.toFixed(2));
+        bac = (total / (weight * r) + (user.bac - (timeDrinking / 3600000) * 0.015)) / i;
+        bac = Number(bac.toFixed(4));
         user.bac = bac;
         user.save().then(() => {
+          
           res.redirect("/profile");
         });
       });
