@@ -17,9 +17,16 @@
             <div>
 
                 <h3>{{capitalize name}}</h3>
-                <h4>Origin:</h4> <p>{{capitalize origin}}</p>
-                <h4>Alcohol Content:</h4> <p>{{alcohol_content}}%</p>
-                <h4>Likes:</h4> <p><span id="likeCounter-{{_id}}">{{likes}}</span></p>
+                <div class="flex-line">
+                    <h4>Origin:</h4> <p>{{capitalize origin}}</p>
+                </div>
+                <div class="flex-line">
+                    <h4>Alcohol Content:</h4> <p>{{alcohol_content}}%</p>
+                </div>
+                
+                <div class="flex-line">
+                    <h4>Likes:</h4> <p><span id="likeCounter-{{_id}}">{{likes}}</span></p>
+                </div>
                 <input type="number" min="0" placeholder="Quantity" value="0" name="quantity">
                 <br>
 
