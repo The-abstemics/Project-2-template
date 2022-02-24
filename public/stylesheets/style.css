@@ -1,7 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-
-  margin: 0;
+  margin: 0 0 90px 0;
   background-color: #36384C;
 }
 
@@ -503,6 +502,14 @@ article p {
 .hr {
   background-color: #E3BAB3;
 }
+.flex-line{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.flex-line h4{
+  margin:0.5rem 0
+}
 
 .drink-avatar {
   height: 150px;
@@ -531,6 +538,11 @@ article p {
 .edit-drink-btn {
   height: 20px;
   width: 20px;
+}
+.like{
+  display: flex;
+  flex-direction: row;
+  width: auto;
 }
 
 .no-background {
