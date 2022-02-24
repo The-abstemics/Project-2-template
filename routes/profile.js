@@ -53,12 +53,12 @@ router
     });
   })
   .post((req, res) => {
-    const { age, weight, height, sex } = req.body;
+    const { age, weight, sex } = req.body;
     const id = req.session.userId;
 
     User.findByIdAndUpdate(
       id,
-      { age, weight, height, sex },
+      { age, weight, sex },
       { new: true }
     ).then(res.redirect("/profile"));
   });
@@ -94,7 +94,7 @@ router
         let date = new Date();
         let i = 1;
         const timeNow = date.getTime();
-        //Si total === 0 que no cambie el timedrinking
+        
         let timeDrinking = timeNow - userStartDrink;
 
         if (total === 0) { 
@@ -104,7 +104,7 @@ router
         gender === "male" ? (r = 0.6) : (r = 0.7);
 
         bac = (total / (weight * r) + (user.bac - (timeDrinking / 3600000) * 0.015)) / i;
-        bac = Number(bac.toFixed(4));
+        bac = Number(bac.toFixed(2));
         user.bac = bac;
         user.save().then(() => {
           

@@ -15,9 +15,9 @@ router.route("/signup")
     res.render("auth/signup")
 })
 .post((req, res)=> {
-    const { username, sex, weight, height, age, password } = req.body;
+    const { username, sex, weight, age, password } = req.body;
 
-    if (!username || !password || !sex || !weight || !height || ! age ) {
+    if (!username || !password || !sex || !weight || ! age ) {
         return res
           .status(400)
           .render("auth/signup", { errorMessage: "Please fill up all the details." });
@@ -52,7 +52,6 @@ router.route("/signup")
               username,
               sex, 
               weight, 
-              height, 
               age,
               password: hashedPassword
             
