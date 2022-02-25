@@ -36,6 +36,9 @@ module.exports = (app) => {
   hbs.registerHelper('capitalize',function(name){
       return name[0].toUpperCase()+name.slice(1);
   })
+  hbs.registerHelper('firstWord',function(name){
+    return name.split(' ')[0] ;
+})
   hbs.registerHelper('math', function(bac) {
     if (bac > 0.25) { 
       return bac / 0.25}
