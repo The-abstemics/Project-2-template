@@ -15,7 +15,7 @@ function getProfileImg(bac) {
   if (bac < 0.14) imgUrl = "/images/beer.png";
   else if (bac >= 0.14 && bac <= 0.25) imgUrl = "/images/ice-bucket.png";
   else if (bac >= 0.26 && bac <= 0.35) imgUrl = "/images/treat.png";
-  else if (bac >= 0.26 && bac <= 0.35) imgUrl = "/images/friends.png";
+  else if (bac >= 0.35 && bac <= 0.60) imgUrl = "/images/friends.png";
   else imgUrl = "/images/drunk.png";
   return imgUrl;
 }
