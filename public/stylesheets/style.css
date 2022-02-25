@@ -561,6 +561,7 @@ article p {
 .perfil-bola{
 border-radius: 50%;
 border: 2px solid #E3BAB3;
+width: 200px;
 }
 
 .fav-drinks {

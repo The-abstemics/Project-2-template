@@ -12,9 +12,11 @@ const session = require("express-session");
 
 function getProfileImg(bac) {
   let imgUrl = "";
-  if (bac < 0.5) imgUrl = "/images/start.jpg";
-  else if (bac >= 0.5 && bac <= 0.8) imgUrl = "/images/drink.jpg";
-  else imgUrl = "/images/wasted.jpg";
+  if (bac < 0.14) imgUrl = "/images/beer.png";
+  else if (bac >= 0.14 && bac <= 0.25) imgUrl = "/images/ice-bucket.png";
+  else if (bac >= 0.26 && bac <= 0.35) imgUrl = "/images/treat.png";
+  else if (bac >= 0.26 && bac <= 0.35) imgUrl = "/images/friends.png";
+  else imgUrl = "/images/drunk.png";
   return imgUrl;
 }
 
