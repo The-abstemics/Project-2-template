@@ -32,6 +32,7 @@ module.exports = (app) => {
   // Sets the view engine to handlebars
   app.set("view engine", "hbs");
 
+
   hbs.registerPartials(path.join(__dirname, "../views/partials"));
 
   hbs.registerHelper("capitalize", function (name) {
@@ -42,8 +43,9 @@ module.exports = (app) => {
     }
     return cuts.join(" ");
   });
-
-
+  hbs.registerHelper('firstWord',function(name){
+    return name.split(' ')[0] ;
+  })
   hbs.registerHelper("math", function (bac) {
     if (bac > 0.25) {
       return bac / 0.25;
