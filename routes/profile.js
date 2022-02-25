@@ -75,7 +75,6 @@ router
         const volumen = drink.size;
         const quantity = req.body.quantity[idx];
         const alcoholDensity = 0.8;
-        console.log(quantity);
         total +=
           (alcohol_content / 100) * (quantity * volumen) * alcoholDensity;
       });
@@ -87,24 +86,12 @@ router
         let r = 0;
         let bac = 0;
         let date = new Date();
-        let i = 1;
         const timeNow = date.getTime();
-
         let timeDrinking = timeNow - userStartDrink;
-
-        if (total === 0) {
-          timeDrinking = 0;
-        } else {
-          i = 2;
-        }
-
         gender === "male" ? (r = 0.6) : (r = 0.7);
-
-        bac =
-          (total / (weight * r) +
-            (user.bac - (timeDrinking / 3600000) * 0.015)) /
-          i;
+        bac = ((total / (weight * r))/2) + ((user.bac - ((timeDrinking / 3600000) * 0.015)));
         bac = Number(bac.toFixed(2));
+        user.startDrinking=timeNow;
         user.bac = bac;
         user.save().then(() => {
           res.redirect("/profile");
